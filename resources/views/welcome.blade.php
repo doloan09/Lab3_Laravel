@@ -280,7 +280,7 @@
                                     India’s government expressed shock after one citizen was killed and another wounded in a bar in suburban Kansas. Another wounded in a bar in suburban Kansas.
                                 </div>
                                 <div>
-                                    <img src="/img/img_5.png">
+                                    <img src="/img/img_10.png">
                                 </div>
                             </div>
                         </div>
