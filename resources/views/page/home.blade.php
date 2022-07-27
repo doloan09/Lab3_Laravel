@@ -1,61 +1,9 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
+@extends('layout.master')
 
-    <script type="text/javascript">
-        function changeAtiveTab(event, tabID) {
-            let element = event.target;
-            while (element.nodeName !== "A") {
-                element = element.parentNode;
-            }
-            ulElement = element.parentNode.parentNode;
-            aElements = ulElement.querySelectorAll("li > a");
-            tabContents = document.getElementById("tabs-id").querySelectorAll(".tab-content > div");
-            for (let i = 0; i < aElements.length; i++) {
-                aElements[i].classList.remove("text-blue-600");
-                aElements[i].classList.add("text-black");
-                tabContents[i].classList.add("hidden");
-                tabContents[i].classList.remove("block");
-            }
-            element.classList.remove("text-black");
-            element.classList.add("text-blue-600");
-            document.getElementById(tabID).classList.remove("hidden");
-            document.getElementById(tabID).classList.add("block");
-        }
-    </script>
+@section('title', 'Home')
 
-    <?php
-    $listA = array("World", "Politics", "Business", "Opinion", "Tech", "Science", "Health", "Sports", "Entertainment", "Travel", "More");
-    $listVides = array("News", "Entertainment", "Celebs", "Movie", "Lifestyle", "Sports", "Tech", "Business", "Auto");
-    $listEnterTaiment = array(
-        "Kangana sad that her ‘Rangoon’ scenes were cut by censorboard",
-        "Kajol-Ajay celebrate 18th wedding anniversary in Paris",
-        "Shahid wishes he was offered this Aamir Khan’s film last year!",
-        "Lipstick Under My Burkha: CBFC defends its move of banning the film",
-        "Varun-Alia’s new song ‘Aashiq Surrender Hua’ is out on YouTube",
-        "‘Jolly LLB 2’ box-office collection week 2",
-        "Casting Ouch! The open dirty secret of showbiz culture in Bollywood",
-        "Student arrested for the murder of model turned teacher",
-        "Shahid wishes he was offered this Aamir Khan’s film last year!"
-    );
+@section('content')
 
-    $lstTopStore = array(
-        "PM unveils Shiva statue in Coimbatore on Mahashivratri",
-        "PM Modi: Kanpur train accident was a conspiracy",
-        "‘Sena, BJP have no option but to join hands again’",
-        "Thousands bid adieu to martyred jawan in Kashmir",
-        "Jayalalithaa’s niece Deepa floats political outfit",
-        "‘China made mistake of ignoring India’s talent’",
-        "Jayalalithaa’s niece Deepa floats political outfit"
-    );
-    ?>
-
-</head>
-<body>
-@include('layout.header')
 <div class="md:mx-16 mt-10">
     <div class="md:grid md:grid-cols-4 md:gap-4 mt-10">
         <div class="col-span-3 md:border-b-2 md:border-solid pb-4">
@@ -83,13 +31,15 @@
                         <div class="hidden md:block">
                             @foreach($lstTopStore as $ls)
                                 <div
-                                    class="my-2 font-roboto border-dashed md:border-solid border-b-2 md:pb-2 ml-2 md:ml-0 md:text-xl truncate md:text-clip md:whitespace-pre-wrap">{{ $ls }}</div>
+                                    class="my-2 font-roboto border-dashed md:border-solid border-b-2 md:pb-2 ml-2 md:ml-0 md:text-xl truncate md:text-clip md:whitespace-pre-wrap">{{ $ls }}
+                                </div>
                             @endforeach
                         </div>
                         <div class="md:hidden">
                             @for($i = 0; $i<4; $i++)
                                 <div
-                                    class="my-2 font-roboto border-dashed md:border-solid border-b-2 md:pb-2 ml-2 md:ml-0 md:text-xl truncate md:text-clip md:whitespace-pre-wrap">{{ $lstTopStore[$i] }}</div>
+                                    class="my-2 font-roboto border-dashed md:border-solid border-b-2 md:pb-2 ml-2 md:ml-0 md:text-xl truncate md:text-clip md:whitespace-pre-wrap">{{ $lstTopStore[$i] }}
+                                </div>
                             @endfor
                         </div>
                     </div>
@@ -247,7 +197,7 @@
                                 bar in suburban Kansas. Another wounded in a bar in suburban Kansas.
                             </div>
                             <div>
-                                <img src="/img/img_10.png">
+                                <img src="/img/img_10.png" class="w-70 h-70">
                             </div>
                         </div>
                     </div>
@@ -297,14 +247,16 @@
                                     <div class="my-2 pb-2 md:text-lg font-roboto">{{ $listEnterTaiment[$i]}}</div>
                                 @else
                                     <div
-                                        class="my-2 border-dashed border-b-2 pb-2 md:text-lg font-roboto">{{ $listEnterTaiment[$i]}}</div>
+                                        class="my-2 border-dashed border-b-2 pb-2 md:text-lg font-roboto">{{ $listEnterTaiment[$i]}}
+                                    </div>
                                 @endif
                             @endfor
                         </div>
                         <div class="md:hidden">
                             @for($i=0; $i<5; $i++)
                                 <div
-                                    class="my-2 border-dashed border-b-2 pb-2 md:text-lg font-roboto">{{ $listEnterTaiment[$i] }}</div>
+                                    class="my-2 border-dashed border-b-2 pb-2 md:text-lg font-roboto">{{ $listEnterTaiment[$i] }}
+                                </div>
                             @endfor
                         </div>
                     </div>
@@ -586,5 +538,28 @@
         <div class="px-2 text-sm">Privacy</div>
     </div>
 </div>
-@include('layout.footer')
 
+@push('scripts')
+    <script>
+        function changeAtiveTab(event, tabID) {
+            let element = event.target;
+            while (element.nodeName !== "A") {
+                element = element.parentNode;
+            }
+            let ulElement = element.parentNode.parentNode;
+            let aElements = ulElement.querySelectorAll("li > a");
+            let tabContents = document.getElementById("tabs-id").querySelectorAll(".tab-content > div");
+            for (let i = 0; i < aElements.length; i++) {
+                aElements[i].classList.remove("text-blue-600");
+                aElements[i].classList.add("text-black");
+                tabContents[i].classList.add("hidden");
+                tabContents[i].classList.remove("block");
+            }
+            element.classList.remove("text-black");
+            element.classList.add("text-blue-600");
+            document.getElementById(tabID).classList.remove("hidden");
+            document.getElementById(tabID).classList.add("block");
+        }
+    </script>
+@endpush
+@endsection

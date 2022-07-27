@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use  App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
+use \App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/home', [HomeController::class, 'index']);
+Route::get('/list-news/{name}', [PostController::class, 'listNews']);
+Route::get('/list-news/{name}/{item}', [PostController::class, 'show']);
+
+Route::get('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'register']);
+
+
