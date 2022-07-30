@@ -12,11 +12,17 @@
 <body>
     <div class="md:grid md:grid-cols-3 md:gap-10">
         <div></div>
-        <form action="/home" class="border text-center container md:mt-14 h-screen md:h-auto rounded-xl shadow-lg shadow-indigo-500/40">
-            <p class="my-10 font-bold text-5xl">Login</p>
+        <form action="/doLogin" method="POST" class="border text-center container md:mt-14 h-screen md:h-auto rounded-xl shadow-lg shadow-indigo-500/40">
+            @csrf
+            <p class="mt-10 mb-6 font-bold text-5xl">Login</p>
+            @if(\Session::has('message'))
+                <div class="alert alert-info">
+                    {{\Session::get('message')}}
+                </div>
+            @endif
             <div class="md:mt-20">
                 <div class="relative">
-                    <input type="email" placeholder="Email" name="email" class="border px-12 py-3.5 mt-10 w-4/5 bg-gray-100">
+                    <input type="email" placeholder="Email" name="email" class="border px-12 py-3.5 mt-10 w-4/5 bg-gray-100" required>
                     <div class="grid grid-cols-12">
                         <div></div>
                         <div class="-mt-9 ml-4">
@@ -26,8 +32,11 @@
                         </div>
                     </div>
                 </div>
+                @if($errors->has('email'))
+                    <div class="text-left pl-16 text-red-600 mt-2">{{ $errors->first('email') }}</div>
+                @endif
                 <div class="relative">
-                    <input type="password" placeholder="Password" name="password" class="border pl-12 p-3.5 my-6 w-4/5 bg-gray-100">
+                    <input type="password" placeholder="Password" name="password" class="border pl-12 p-3.5 my-6 w-4/5 bg-gray-100" required>
                     <div class="grid grid-cols-12">
                         <div></div>
                         <div class="-mt-16 ml-4">
@@ -43,6 +52,9 @@
                         </div>
                     </div>
                 </div>
+                @if($errors->has('password'))
+                    <div class="text-left pl-16 text-red-600">{{ $errors->first('password') }}</div>
+                @endif
             </div>
             <div class="grid grid-cols-10 mt-4">
                 <div class="col-span-1"></div>
@@ -54,7 +66,7 @@
                 <div class="col-span-1"></div>
             </div>
             <div>
-                <button class="text-white bg-black w-4/5 p-3 mt-28 mb-16 font-bold text-2xl">Login</button>
+                <button type="submit" class="text-white bg-black w-4/5 p-3 mt-28 mb-16 font-bold text-2xl">Login</button>
             </div>
             <div class="grid grid-cols-10 mb-20">
                 <div class="col-span-1"></div>

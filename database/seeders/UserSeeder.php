@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Facades\Hash;
 use App\Exceptions\Handler;
-use App\Models\Users;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,17 +17,15 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        Users::insert([
+        User::insert([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
-            'password' => md5('123'),
-            'permission' => 1
+            'password' => Hash::make('12345678'),
         ]);
-        Users::insert([
+        User::insert([
             'name' => 'Loan',
             'email' => 'loan@gmail.com',
-            'password' => md5('123'),
-            'permission' => 0
+            'password' => Hash::make('12345678'),
         ]);
     }
 }

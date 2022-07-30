@@ -12,11 +12,12 @@
 <body>
 <div class="md:grid md:grid-cols-3 md:gap-10 ">
     <div></div>
-    <form action="/login" class="border text-center container md:mt-14 h-screen md:h-auto rounded-xl shadow-lg shadow-indigo-500/40">
+    <form action="/doRegister" method="POST" class="border text-center container md:mt-14 h-screen md:h-auto rounded-xl shadow-lg shadow-indigo-500/40">
+        @csrf
         <p class="my-10 font-bold text-5xl">Sign Up</p>
         <div class="md:mt-20">
             <div class="relative">
-                <input type="User name" placeholder="User name" name="username" class="border pl-12 p-3.5 mt-10 w-4/5 bg-gray-100">
+                <input type="User name" placeholder="User name" name="name" class="border pl-12 p-3.5 mt-2 w-4/5 bg-gray-100" required>
                 <div class="grid grid-cols-12">
                     <div></div>
                     <div class="-mt-10 ml-4">
@@ -26,8 +27,11 @@
                     </div>
                 </div>
             </div>
+            @if($errors->has('name'))
+                <div class="text-left pl-16 text-red-600 mt-2">{{ $errors->first('name') }}</div>
+            @endif
             <div class="relative">
-                <input type="email" placeholder="Email" name="email" class="border pl-12 p-3.5 mt-6 w-4/5 bg-gray-100">
+                <input type="email" placeholder="Email" name="email" class="border pl-12 p-3.5 mt-6 w-4/5 bg-gray-100" required>
                 <div class="grid grid-cols-12">
                     <div></div>
                     <div class="-mt-10 ml-4">
@@ -37,8 +41,11 @@
                     </div>
                 </div>
             </div>
+            @if($errors->has('email'))
+                <div class="text-left pl-16 text-red-600 mt-2">{{ $errors->first('email') }}</div>
+            @endif
             <div class="relative">
-                <input type="password" placeholder="Password" name="password" class="border pl-12 p-3.5 mt-6 w-4/5 bg-gray-100">
+                <input type="password" placeholder="Password" name="password" class="border pl-12 p-3.5 mt-6 w-4/5 bg-gray-100" required>
                 <div class="grid grid-cols-12">
                     <div></div>
                     <div class="-mt-10 ml-4">
@@ -54,6 +61,9 @@
                     </div>
                 </div>
             </div>
+            @if($errors->has('password'))
+                <div class="text-left pl-16 text-red-600 mt-2">{{ $errors->first('password') }}</div>
+            @endif
         </div>
         <div>
             <button class="text-white bg-black w-4/5 p-3 mt-24 mb-16 font-bold text-2xl">Sign Up</button>
