@@ -15,7 +15,7 @@
     <div class="px-4 md:px-10 md:h-screen border-b-2">
         <div class="grid grid-cols-12 my-10 border-b-2">
             <p class="col-span-10 md:col-span-11 text-3xl font-bold">Admin</p>
-            <a href="/logout" class="text-right text-blue-700 cursor-pointer">Logout</a>
+            <a href="{{ route('logout') }}" class="text-right text-blue-700 cursor-pointer">Logout</a>
         </div>
         @yield('content')
     </div>

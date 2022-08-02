@@ -21,9 +21,9 @@
                     <td>{{$ls->name}}</td>
                     <td>{{$ls->email}}</td>
                     <td class="flex">
-                        <a href="/auth/admin/edit-user/{{$ls->id}}" class="cursor-pointer text-blue-600">Update</a>
+                        <a href="{{ route('auth-admin.edit-user', ['id' => $ls->id]) }}" class="cursor-pointer text-blue-600">Update</a>
                         <p class="px-3">/</p>
-                        <form action="/auth/admin/delete-user/{{$ls->id}}" method="POST">
+                        <form action="{{ route('auth-admin.delete-user', ['id' => $ls->id]) }}" method="POST">
                             @csrf
                             {{ method_field('delete') }}
                             <button class="cursor-pointer text-red-600" type="submit">delete</button>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="py-14">
-        <a href="/auth/admin/register" class="border border-gray-400 p-4 rounded-xl text-gray-600 bg-gray-200 hover:bg-white hover:text-black">Create User</a>
+        <a href="{{ route('auth-admin.register.request') }}" class="border border-gray-400 p-4 rounded-xl text-gray-600 bg-gray-200 hover:bg-white hover:text-black">Create User</a>
     </div>
 @endsection
 

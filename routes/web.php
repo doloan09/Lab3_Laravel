@@ -24,11 +24,11 @@ Route::get('/list-news/{name}', [PostController::class, 'listNews']);
 Route::get('/list-news/{name}/{item}', [PostController::class, 'show']);
 
 //Login - logout (User)
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/register', [AuthController::class, 'register']);
-Route::post('/doLogin', [AuthController::class, 'doLogin']);
-Route::post('/doRegister', [AuthController::class, 'doRegister']);
-Route::get('/logout', [AuthController::class, 'logOut']);
+Route::get('/login', [AuthController::class, 'login'])->name('login.request');
+Route::get('/register', [AuthController::class, 'register'])->name('register.request');
+Route::post('/login', [AuthController::class, 'doLogin'])->name('login');
+Route::post('/register', [AuthController::class, 'doRegister'])->name('register');
+Route::get('/logout', [AuthController::class, 'logOut'])->name('logout');
 
 /// email verify
 Route::get('/email/verify', [VerifyEmailController::class, 'verifyEmailNotice'])->middleware('auth')->name('verification.notice');
@@ -45,12 +45,12 @@ Route::post('/reset-password', [ResetPassController::class, 'resetPass'])->middl
 Route::group([
     'prefix' => 'auth/admin',
 ], function () {
-    Route::get('/list-user', [UserController::class, 'index']); // view list user
-    Route::get('/register', [UserController::class, 'create']); // view create user
-    Route::post('/register', [UserController::class, 'store']); //insert user
-    Route::get('/edit-user/{id}', [UserController::class, 'edit']); // view update
-    Route::post('/update-user/{id}', [UserController::class, 'update']); //update user
-    Route::delete('/delete-user/{id}', [UserController::class, 'destroy']); //delete user
+    Route::get('/list-user', [UserController::class, 'index'])->name('auth-admin.list-user'); // view list user
+    Route::get('/register', [UserController::class, 'create'])->name('auth-admin.register.request'); // view create user
+    Route::post('/register', [UserController::class, 'store'])->name('auth-admin.register'); //insert user
+    Route::get('/edit-user/{id}', [UserController::class, 'edit'])->name('auth-admin.edit-user'); // view update
+    Route::post('/update-user/{id}', [UserController::class, 'update'])->name('auth-admin.update-user'); //update user
+    Route::delete('/delete-user/{id}', [UserController::class, 'destroy'])->name('auth-admin.delete-user'); //delete user
 });
 
 

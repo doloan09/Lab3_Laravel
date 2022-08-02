@@ -27,12 +27,12 @@ class UserController extends Controller
     public function index()
     {
         if ($this->checkAdmin()) {
-            $list = User::paginate(20);
+            $list = User::whereNot('is_admin', 1)->paginate(20);
             return view('user.list_user', compact('list'));
         }elseif (!$this->checkAdmin()){
-            return redirect('/home');
+            return redirect()->route('home');
         }else {
-            return redirect('/login');
+            return redirect()->route('login.request');
         }
     }
 
@@ -71,7 +71,7 @@ class UserController extends Controller
         $request->validated();
         $this->createUser($request->all());
 
-        return redirect('/auth/admin/list-user');
+        return redirect()->route('auth-admin.list-user');
     }
 
     /**
@@ -115,10 +115,10 @@ class UserController extends Controller
         ]);
 
         if ($request->name == "") {
-            return redirect("/auth/admin/edit-user/$id");
+            return redirect()->route('auth-admin.edit-user', ['id' => $id]);
         } else {
             User::findOrFail($id)->update(['name' => $request->name]);
-            return redirect('/auth/admin/list-user');
+            return redirect()->route('auth-admin.list-user');
         }
     }
 
@@ -132,7 +132,7 @@ class UserController extends Controller
     {
         if ($this->checkAdmin()) {
             User::findOrFail($id)->delete();
-            return redirect('/auth/admin/list-user');
+            return redirect()->route('auth-admin.list-user');
         }
         return abort(403, 'Unauthorized action.');
     }

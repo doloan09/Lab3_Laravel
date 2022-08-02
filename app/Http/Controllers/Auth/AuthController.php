@@ -37,10 +37,10 @@ class AuthController extends Controller
 
         $req = $request->only('email', 'password');
         if (Auth::attempt($req)){
-            return redirect('/auth/admin/list-user');
+            return redirect()->route('auth-admin.list-user');
         }
 
-        return redirect('/login')->with('message', 'Login detail are not found!');
+        return redirect()->route('login.request')->with('message', 'Login detail are not found!');
     }
 
     public function create(array $data)
@@ -68,6 +68,6 @@ class AuthController extends Controller
         Session::flush();
         Auth::logout();
 
-        return redirect('/login');
+        return redirect()->route('login.request');
     }
 }

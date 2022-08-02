@@ -12,7 +12,7 @@
 <body>
 <div class="md:grid md:grid-cols-3 md:gap-10 ">
     <div></div>
-    <form action="/doRegister" method="POST" class="border text-center container md:mt-14 h-screen md:h-auto rounded-xl shadow-lg shadow-indigo-500/40">
+    <form action="{{ route('register') }}" method="POST" class="border text-center container md:mt-14 h-screen md:h-auto rounded-xl shadow-lg shadow-indigo-500/40">
         @csrf
         <p class="my-10 font-bold text-5xl">Sign Up</p>
         <div class="md:mt-20">
@@ -94,7 +94,7 @@
                 Already have account?
             </div>
             <div class="col-span-1 text-left pl-4 text-blue-700">
-                <a href="/login">Login</a>
+                <a href="{{ route('login.request') }}">Login</a>
             </div>
             <div class="hidden md:block"></div>
         </div>

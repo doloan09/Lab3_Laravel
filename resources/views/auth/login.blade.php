@@ -12,7 +12,7 @@
 <body>
     <div class="md:grid md:grid-cols-3 md:gap-10">
         <div></div>
-        <form action="/doLogin" method="POST" class="border text-center container md:mt-14 h-screen md:h-auto rounded-xl shadow-lg shadow-indigo-500/40">
+        <form action="{{ route('login') }}" method="POST" class="border text-center container md:mt-14 h-screen md:h-auto rounded-xl shadow-lg shadow-indigo-500/40">
             @csrf
             <p class="mt-10 mb-6 font-bold text-5xl">Login</p>
             @if(\Session::has('message'))
@@ -94,7 +94,7 @@
                     Create an account?
                 </div>
                 <div class="col-span-1 text-left pl-4 text-blue-700">
-                    <a href="/register">Sign up</a>
+                    <a href="{{ route('register.request') }}">Sign up</a>
                 </div>
                 <div class="hidden md:block"></div>
             </div>
