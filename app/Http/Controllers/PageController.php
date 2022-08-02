@@ -14,7 +14,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        if (Auth::check()) {
+//        if (Auth::check()) {
             $listVides = array("News", "Entertainment", "Celebs", "Movie", "Lifestyle", "Sports", "Tech", "Business", "Auto");
             $listEnterTaiment = array(
                 "Kangana sad that her ‘Rangoon’ scenes were cut by censorboard",
@@ -41,8 +41,8 @@ class PageController extends Controller
             return view('page.home', compact('listVides', 'listEnterTaiment', 'lstTopStore'));
         }
 
-        return redirect('/login');
-    }
+//        return redirect('/login');
+//    }
 
     /**
      * Show the form for creating a new resource.

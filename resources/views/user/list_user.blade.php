@@ -8,6 +8,7 @@
         <table class="table-auto my-10 w-full">
             <thead>
             <tr class="text-left">
+                <th>ID</th>
                 <th>Username</th>
                 <th>Email</th>
                 <th>Thao tác</th>
@@ -16,6 +17,7 @@
             <tbody>
             @foreach($list as $ls)
                 <tr>
+                    <td>{{$ls->id}}</td>
                     <td>{{$ls->name}}</td>
                     <td>{{$ls->email}}</td>
                     <td class="flex">

@@ -16,7 +16,7 @@
             @csrf
             <p class="mt-10 mb-6 font-bold text-5xl">Login</p>
             @if(\Session::has('message'))
-                <div class="alert alert-info">
+                <div class="alert alert-info text-red-600">
                     {{\Session::get('message')}}
                 </div>
             @endif
@@ -62,7 +62,7 @@
                     <input type="checkbox" class="float-left col-span-1 mt-1 w-4/12">
                     <p class="text-sm col-span-1 text-left">Remember</p>
                 </div>
-                <a class="text-sm text-blue-600 col-span-4 md:col-span-6 text-right">Forgot password?</a>
+                <a class="text-sm text-blue-600 col-span-4 md:col-span-6 text-right" href="{{ route('password.request') }}">Forgot password?</a>
                 <div class="col-span-1"></div>
             </div>
             <div>
