@@ -87,12 +87,11 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
         if ($this->checkAdmin()) {
-            $item = User::findOrFail($id);
 
-            return view('user.update', compact('item'));
+            return view('user.update', compact('user'));
         }
         return abort(403, 'Unauthorized action.');
     }
@@ -124,10 +123,11 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
         if ($this->checkAdmin()) {
-            User::findOrFail($id)->delete();
+
+            $user->delete();
             return redirect()->route('auth-admin.list-user');
         }
         return abort(403, 'Unauthorized action.');

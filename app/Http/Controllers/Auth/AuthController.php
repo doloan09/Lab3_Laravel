@@ -18,17 +18,17 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function login()
+    public function loginRequest()
     {
         return view('auth/login');
     }
 
-    public function register()
+    public function registerRequest()
     {
         return view('auth/register');
     }
 
-    public function doLogin(Request $request)
+    public function login(Request $request)
     {
         $request->validate([
             'email' => ['required', 'email'],
@@ -43,7 +43,7 @@ class AuthController extends Controller
         return redirect()->route('login.request')->with('message', 'Login detail are not found!');
     }
 
-    public function doRegister(StoreUserRequest $request)
+    public function register(StoreUserRequest $request)
     {
         $request->validated();
 
@@ -59,7 +59,7 @@ class AuthController extends Controller
         return redirect()->route('home');
     }
 
-    public function logOut(){
+    public function logout(){
         Session::flush();
         Auth::logout();
 

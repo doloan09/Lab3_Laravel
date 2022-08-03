@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 
 class ResetPassController extends Controller
 {
-    public function viewForgotPass () {
+    public function showForgotPass () {
         return view('auth.forgot-password');
     }
 
@@ -28,7 +28,7 @@ class ResetPassController extends Controller
             : back()->withErrors(['email' => __($status)]);
     }
 
-    public function viewResetPass ($token) {
+    public function showResetPass ($token) {
         return view('auth.reset-password', ['token' => $token]);
     }
 
