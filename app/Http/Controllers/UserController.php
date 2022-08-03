@@ -103,16 +103,16 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         $request->validate([
             'name' => ['required'],
         ]);
 
         if ($request->name == "") {
-            return redirect()->route('auth-admin.edit-user', ['id' => $id]);
+            return redirect()->route('auth-admin.edit-user', ['user' => $user]);
         } else {
-            User::findOrFail($id)->update(['name' => $request->name]);
+            $user->update(['name' => $request->name]);
             return redirect()->route('auth-admin.list-user');
         }
     }

@@ -49,7 +49,7 @@ Route::group([
     Route::get('/register', [UserController::class, 'create'])->name('auth-admin.register.request'); // view create user
     Route::post('/register', [UserController::class, 'store'])->name('auth-admin.register'); //insert user
     Route::get('/edit-user/{user}', [UserController::class, 'edit'])->name('auth-admin.edit-user'); // view update
-    Route::post('/update-user/{id}', [UserController::class, 'update'])->name('auth-admin.update-user'); //update user
+    Route::post('/update-user/{user}', [UserController::class, 'update'])->name('auth-admin.update-user'); //update user
     Route::delete('/delete-user/{user}', [UserController::class, 'destroy'])->name('auth-admin.delete-user'); //delete user
 });
 
