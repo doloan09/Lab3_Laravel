@@ -26,10 +26,10 @@ class UserController extends Controller
 
     public function index()
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkAdmin() == 1) {
             $list = User::whereNot('is_admin', 1)->paginate(20);
             return view('user.list_user', compact('list'));
-        }elseif (!$this->checkAdmin()){
+        }elseif ($this->checkAdmin() == 0){
             return redirect()->route('home');
         }else {
             return redirect()->route('login.request');
@@ -50,16 +50,6 @@ class UserController extends Controller
         return abort(403, 'Unauthorized action.');
     }
 
-    public function createUser(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'is_admin' => '0'
-        ]);
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -69,7 +59,13 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $request->validated();
-        $this->createUser($request->all());
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'is_admin' => '0'
+        ]);
 
         return redirect()->route('auth-admin.list-user');
     }

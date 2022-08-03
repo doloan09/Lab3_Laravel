@@ -43,21 +43,16 @@ class AuthController extends Controller
         return redirect()->route('login.request')->with('message', 'Login detail are not found!');
     }
 
-    public function create(array $data)
-    {
-        return User::create([
-            'name'=>$data['name'],
-            'email'=>$data['email'],
-            'password'=> Hash::make($data['password']),
-            'is_admin'=>'0'
-        ]);
-    }
-
     public function doRegister(StoreUserRequest $request)
     {
         $request->validated();
 
-        $user = $this->create($request->all());
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'is_admin' => '0'
+        ]);
 
         event(new Registered($user));
 
