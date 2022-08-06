@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -17,9 +18,10 @@ class PostController extends Controller
     }
 
     public function listNews($name){
+        $user = Auth::user();
         $listA = array("World", "Politics", "Business", "Opinion", "Tech", "Science", "Health", "Sports", "Entertainment", "Travel", "More");
 
-        return view('post.list_news', compact('listA', 'name'));
+        return view('post.list_news', compact('listA', 'name', 'user'));
     }
 
     /**
@@ -51,9 +53,10 @@ class PostController extends Controller
      */
     public function show($name, $item)
     {
+        $user = Auth::user();
         $listA = array("World", "Politics", "Business", "Opinion", "Tech", "Science", "Health", "Sports", "Entertainment", "Travel", "More");
 
-        return view('post.detail', compact('listA', 'name', 'item'));
+        return view('post.detail', compact('listA', 'name', 'item', 'user'));
     }
 
 

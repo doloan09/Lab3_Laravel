@@ -15,6 +15,16 @@
         <div class="hidden md:block col-span-1"></div>
         <div class="border p-4 h-56 col-span-3 md:col-span-1">
             <div class="text-center font-bold text-2xl">Verify - email</div>
+            @if(\Session::has('message'))
+                <div class="text-green-600 text-center">
+                    {{\Session::get('message')}}
+                </div>
+            @else
+                <div class="text-center">
+                    Before proceeding, please check your email for a verification link.
+                </div>
+            @endif
+
             <form action="{{ route('verification.send') }}" method="POST">
                 @csrf
                 <button type="submit" class="w-full border rounded-xl p-4 mt-16 bg-black text-white font-bold border-gray-400">Send email</button>

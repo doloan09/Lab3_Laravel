@@ -14,7 +14,6 @@ class PageController extends Controller
      */
     public function index()
     {
-//        if (Auth::check()) {
             $listVides = array("News", "Entertainment", "Celebs", "Movie", "Lifestyle", "Sports", "Tech", "Business", "Auto");
             $listEnterTaiment = array(
                 "Kangana sad that her ‘Rangoon’ scenes were cut by censorboard",
@@ -38,11 +37,10 @@ class PageController extends Controller
                 "Jayalalithaa’s niece Deepa floats political outfit"
             );
 
-            return view('page.home', compact('listVides', 'listEnterTaiment', 'lstTopStore'));
-        }
+            $user = Auth::user();
 
-//        return redirect('/login');
-//    }
+            return view('page.home', compact('listVides', 'listEnterTaiment', 'lstTopStore', 'user'));
+        }
 
     /**
      * Show the form for creating a new resource.

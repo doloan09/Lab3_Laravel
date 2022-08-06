@@ -15,6 +15,12 @@
         <form action="{{ route('login') }}" method="POST" class="border text-center container md:mt-14 h-screen md:h-auto rounded-xl shadow-lg shadow-indigo-500/40">
             @csrf
             <p class="mt-10 mb-6 font-bold text-5xl">Login</p>
+            @if(session('status'))
+                <div class="alert alert-info text-green-600">
+                    {{ session('status') }}
+                </div>
+            @endif
+
             @if(\Session::has('message'))
                 <div class="alert alert-info text-red-600">
                     {{\Session::get('message')}}
@@ -103,3 +109,11 @@
     </div>
 </body>
 </html>
+<script>
+    check();
+    function check(){
+        if(session('status') != ""){
+            alert(session('status'));
+        }
+    }
+</script>

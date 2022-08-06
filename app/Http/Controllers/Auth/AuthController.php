@@ -20,11 +20,17 @@ class AuthController extends Controller
      */
     public function loginRequest()
     {
+        if (Auth::user()){
+            return redirect()->route('home');
+        }
         return view('auth/login');
     }
 
     public function registerRequest()
     {
+        if (Auth::user()){
+            return redirect()->route('home');
+        }
         return view('auth/register');
     }
 
@@ -52,6 +58,11 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'is_admin' => '0'
+        ]);
+
+        Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password
         ]);
 
         event(new Registered($user));
