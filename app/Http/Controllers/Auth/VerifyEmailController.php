@@ -21,7 +21,7 @@ class VerifyEmailController extends Controller
     public function verify(EmailVerificationRequest $request) {
         $request->fulfill();
 
-        return redirect('/login');
+        return redirect('/home')->with('message', 'Bạn đã xác minh tài khoản thành công!');
     }
 
 }

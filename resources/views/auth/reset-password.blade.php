@@ -26,20 +26,7 @@
         @endif
         <div class="">
             <input type="hidden" name="token" value="{{ $token }}">
-            <div class="relative">
-                <input type="email" placeholder="Email" name="email" class="border px-12 py-3.5 mt-4 bg-gray-100 w-full" required>
-                <div class="grid grid-cols-12">
-                    <div></div>
-                    <div class="-mt-9 -ml-6 md:-ml-10">
-                        <svg width="30" height="20" viewBox="0 0 128 117" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M116 14.625C122.625 14.625 128 19.5358 128 25.5938C128 29.0443 126.225 32.2893 123.2 34.3687L68.8 71.6625C65.95 73.6049 62.05 73.6049 59.2 71.6625L4.8 34.3687C1.77825 32.2893 0 29.0443 0 25.5938C0 19.5358 5.3725 14.625 12 14.625H116ZM54.4 77.5125C60.1 81.4201 67.9 81.4201 73.6 77.5125L128 40.2188V87.75C128 95.8166 120.825 102.375 112 102.375H16C7.1625 102.375 0 95.8166 0 87.75V40.2188L54.4 77.5125Z" fill="#434343" fill-opacity="0.6"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            @if($errors->has('email'))
-                <div class="text-left mt-2 text-red-600 mt-2">{{ $errors->first('email') }}</div>
-            @endif
+            <input type="hidden" name="email" value="{{ $_GET['email'] }}">
             <div class="relative">
                 <input type="password" placeholder="Password" name="password" class="border px-12 py-3.5 mt-4 bg-gray-100 w-full" required>
                 <div class="grid grid-cols-12">

@@ -30,21 +30,21 @@ class AuthServiceProvider extends ServiceProvider
 
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
             return (new MailMessage)
-                ->greeting('Hello ' . $notifiable->name . '!')
+                ->greeting('Xin chào ' . $notifiable->name . '!')
                 ->subject('Verify Email Address')
-                ->line('Please click the button below to verify your email address.')
-                ->action('Verify Email Address', $url)
-                ->line('If you did not create an account, no further action is required.');
+                ->line('Vui lòng click vào nút bên dưới để xác thực email của bạn.')
+                ->action('Xác nhân địa chỉ email', $url)
+                ->line('Nếu bạn chưa tạo tài khoản, bạn không cần thực hiện thêm hành động nào.');
         });
 
-        ResetPassword::toMailUsing(function ($notifiable, $url) {
+        ResetPassword::toMailUsing(function ($notifiable, $token) {
             return (new MailMessage)
-                ->greeting('Hello ' . $notifiable->name . '!')
+                ->greeting('Xin chào ' . $notifiable->name . '!')
                 ->subject('Reset Password Notification')
-                ->line('You are receiving this email because we received a password reset request for your account.')
-                ->action('Reset Password', $url)
-                ->line('This password reset link will expire in 60 minutes.')
-                ->line('If you did not request a password reset, no further action is required.');
+                ->line('Bạn nhận được email này vì chúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn.')
+                ->action('Đặt lại mật khẩu', "http://lab3_laravel.test/reset-password/" . $token . "?email=" . $notifiable->email)
+                ->line('Liên kết đặt lại mật khẩu này sẽ hết hạn sau 60 phút.')
+                ->line('Nếu bạn không yêu cầu đặt lại mật khẩu, bạn không cần thực hiện thêm hành động nào.');
         });
     }
 }

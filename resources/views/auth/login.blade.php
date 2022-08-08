@@ -109,11 +109,4 @@
     </div>
 </body>
 </html>
-<script>
-    check();
-    function check(){
-        if(session('status') != ""){
-            alert(session('status'));
-        }
-    }
-</script>
+

@@ -67,7 +67,7 @@ class AuthController extends Controller
 
         event(new Registered($user));
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('message', 'Bạn đã đăng ký tài khoản thành công! Vui lòng kiểm tra email để xác thực tài khoản của bạn.');
     }
 
     public function logout(){
