@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/home', [PageController::class, 'index'])->name('home');
 Route::get('/list-news/{name}', [PostController::class, 'listNews'])->name('list-news');
 Route::get('/list-news/{name}/{item}', [PostController::class, 'show'])->name('lost-news.item')->middleware(['auth', 'verified']);
@@ -29,6 +30,14 @@ Route::get('/register', [AuthController::class, 'registerRequest'])->name('regis
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+///Login gg
+Route::get('/login/google/redirect', [AuthController::class, 'redirectToGoogle'])->name('login.google.redirect');
+Route::get('/login/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('login.google.callback');
+
+///Login fb
+Route::get('/login/facebook/redirect', [AuthController::class, 'redirectToFacebook'])->name('login.facebook.redirect');
+Route::get('/login/facebook/callback', [AuthController::class, 'handleFacebookCallback'])->name('login.facebook.callback');
 
 /// email verify
 Route::get('/email/verify', [VerifyEmailController::class, 'verifyEmailNotice'])->middleware('auth')->name('verification.notice'); // hien thi view verify email de co the yeu cau cap lai email xac minh

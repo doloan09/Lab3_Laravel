@@ -12,7 +12,7 @@
 <body>
 <div class="md:grid md:grid-cols-3 md:gap-10">
     <div></div>
-    <form action="{{ route('password.update') }}" method="POST" class="text-center container md:mt-14 px-4">
+    <form action="/reset-password" method="POST" class="text-center container md:mt-14 px-4">
         @csrf
         <p class="text-2xl font-bold mb-6">Reset password</p>
         @if(session('status'))

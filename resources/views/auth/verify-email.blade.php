@@ -25,7 +25,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('verification.send') }}" method="POST">
+            <form action="/email/verification-notification" method="POST">
                 @csrf
                 <button type="submit" class="w-full border rounded-xl p-4 mt-16 bg-black text-white font-bold border-gray-400">Send email</button>
             </form>

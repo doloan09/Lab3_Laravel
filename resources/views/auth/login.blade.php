@@ -12,7 +12,7 @@
 <body>
     <div class="md:grid md:grid-cols-3 md:gap-10">
         <div></div>
-        <form action="{{ route('login') }}" method="POST" class="border text-center container md:mt-14 h-screen md:h-auto rounded-xl shadow-lg shadow-indigo-500/40">
+        <form action="/login" method="POST" class="border text-center container md:mt-14 h-screen md:h-auto rounded-xl shadow-lg shadow-indigo-500/40">
             @csrf
             <p class="mt-10 mb-6 font-bold text-5xl">Login</p>
             @if(session('status'))
@@ -68,7 +68,7 @@
                     <input type="checkbox" class="float-left col-span-1 mt-1 w-4/12">
                     <p class="text-sm col-span-1 text-left">Remember</p>
                 </div>
-                <a class="text-sm text-blue-600 col-span-4 md:col-span-6 text-right" href="{{ route('password.request') }}">Forgot password?</a>
+                <a class="text-sm text-blue-600 col-span-4 md:col-span-6 text-right" href="/forgot-password">Forgot password?</a>
                 <div class="col-span-1"></div>
             </div>
             <div>
@@ -77,20 +77,20 @@
             <div class="grid grid-cols-10 mb-20">
                 <div class="col-span-1"></div>
                 <div class="col-span-4 mr-2">
-                    <div class="grid grid-cols-4 border py-2">
+                    <a class="grid grid-cols-4 border py-2 cursor-pointer" href="{{ route('login.facebook.redirect') }}">
                         <div class="md:col-span-1"></div>
                         <img src="img/img_19.png" class="w-1/2 col-span-1 md:col-span-1 md:w-4/12">
                         <p class="-ml-2 md:col-span-1 md:-ml-10">Facebook</p>
                         <div class="md:col-span-1"></div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-span-4 mr-2">
-                    <div class="grid grid-cols-4 border py-2">
+                    <a class="grid grid-cols-4 border py-2 cursor-pointer" href="{{ route('login.google.redirect') }}">
                         <div class="md:col-span-1"></div>
                         <img src="img/img_20.png" class="w-1/2 md:col-span-1 md:w-4/12 mt-1">
                         <p class="md:col-span-1 md:-ml-12">Google</p>
                         <div class="md:col-span-1"></div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-span-1"></div>
             </div>
@@ -100,7 +100,7 @@
                     Create an account?
                 </div>
                 <div class="col-span-1 text-left pl-4 text-blue-700">
-                    <a href="{{ route('register.request') }}">Sign up</a>
+                    <a href="/register">Sign up</a>
                 </div>
                 <div class="hidden md:block"></div>
             </div>
