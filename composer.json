@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "backpack/crud": "^5.3",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^2.14.1",
@@ -13,7 +14,9 @@
         "laravel/tinker": "^2.7"
     },
     "require-dev": {
+        "backpack/generators": "^3.1",
         "fakerphp/faker": "^1.9.1",
+        "laracasts/generators": "^2.0",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",

@@ -6,12 +6,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\CanResetPassword;
 
 
 class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -47,6 +49,10 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 
     public function isAdmin(){
         return (bool)$this->is_admin;
+    }
+
+    public function setPasswordAttribute($value) {
+        $this->attributes['password'] = Hash::make($value);
     }
 }
 
