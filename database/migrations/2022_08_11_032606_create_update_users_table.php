@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->timestamp('google_id')->nullable();
-            $table->timestamp('google_token')->nullable();
-            $table->timestamp('google_refresh_token')->nullable();
-            $table->timestamp('facebook_id')->nullable();
-            $table->timestamp('facebook_token')->nullable();
-            $table->timestamp('facebook_refresh_token')->nullable();
+            $table->string('google_id')->nullable();
+            $table->string('google_token')->nullable();
+            $table->string('google_refresh_token')->nullable();
+            $table->string('facebook_id')->nullable();
+            $table->string('facebook_token')->nullable();
+            $table->string('facebook_refresh_token')->nullable();
         });
     }
 
