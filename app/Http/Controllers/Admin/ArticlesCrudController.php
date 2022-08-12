@@ -71,7 +71,7 @@ class ArticlesCrudController extends CrudController
         CRUD::field('date')->type('date');
         CRUD::field('image');
         CRUD::field('author');
-        CRUD::addField([   // select_grouped
+        CRUD::addField([  
             'label'     => 'Articles grouped by categories',
             'type'      => 'select_grouped', //https://github.com/Laravel-Backpack/CRUD/issues/502
             'name'      => 'id_article',
