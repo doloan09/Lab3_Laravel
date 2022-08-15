@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('tittle');
-            $table->string('content', 1000);
+            $table->string('contents', 15000);
             $table->date('date');
             $table->integer('view')->nullable();
             $table->string('image')->nullable();

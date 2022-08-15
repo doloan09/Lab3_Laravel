@@ -26,9 +26,11 @@ class ArticlesRequest extends FormRequest
     {
         return [
             'tittle' => 'required',
-            'content' => 'required|max:1000',
+            'contents' => 'required',
             'date' => 'required|date',
-            'author' => 'required'
+            'author' => 'required',
+//            'image' => 'sometimes|file',
+            'id_category' => 'required'
         ];
     }
     /**

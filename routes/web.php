@@ -23,6 +23,7 @@ Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/home', [PageController::class, 'index'])->name('home');
 Route::get('/list-news/{name}', [PostController::class, 'listNews'])->name('list-news');
 Route::get('/list-news/{name}/{item}', [PostController::class, 'show'])->name('lost-news.item');
+//Route::get('/list-news/{name}/{item}', [PostController::class, 'show'])->name('lost-news.item')->middleware('auth', 'verify');
 
 //Login - logout (User)
 Route::get('/login', [AuthController::class, 'loginRequest'])->name('login.request');

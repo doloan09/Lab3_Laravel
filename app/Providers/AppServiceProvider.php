@@ -25,5 +25,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+
+        $this->app->bind(
+            \Backpack\PermissionManager\app\Http\Controllers\UserCrudController::class, //this is package controller
+//            \App\Http\Controllers\Admin\UserCrudController::class //this should be your own controller
+//            \Backpack\PermissionManager\app\Http\Controllers\RoleCrudController::class,
+        );
+
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\DB;
 
 class CheckIfAdmin
 {
@@ -29,7 +30,18 @@ class CheckIfAdmin
     {
 //         return ($user->is_admin == 1);
 //        return true;
-        if ($user->is_admin == 1 || $user->is_admin == 2){
+//        if ($user->is_admin == 1 || $user->is_admin == 2){
+//            return true;
+//        }
+
+        $users = DB::table('roles')
+            ->join('model_has_roles', 'roles.id', '=', 'model_has_roles.role_id')
+            ->join('users', 'users.id', '=', 'model_has_roles.model_id')
+            ->select('roles.id')
+            ->where('model_has_roles.model_id', $user->id)
+            ->first();
+
+        if($users && ($users->id == 2 || $users->id == 3)){
             return true;
         }
     }

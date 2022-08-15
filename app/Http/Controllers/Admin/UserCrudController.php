@@ -41,7 +41,7 @@ class UserCrudController extends CrudController
     {
         CRUD::column('name');
         CRUD::column('email');
-        CRUD::column('password');
+//        CRUD::column('password');
         CRUD::column('is_admin');
 
         /**
@@ -64,7 +64,6 @@ class UserCrudController extends CrudController
         CRUD::field('name');
         CRUD::field('email')->type('email');
         CRUD::field('password')->type('password');
-//        CRUD::field('is_admin')->type('boolean');
         CRUD::addField([
             'name'        => 'is_admin', // the name of the db column
             'label'       => 'Roles', // the input label
@@ -92,6 +91,27 @@ class UserCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        $this->setupCreateOperation();
+        //        $this->setupCreateOperation();
+
+        CRUD::setValidation([
+            'name' => ['required'],
+//            'password' => ['required', 'min:8'],
+            'is_admin' => ['required'],
+        ]);
+
+        CRUD::field('name');
+        CRUD::field('email')->type('email')->attributes(['readonly' => 'readonly']);
+        CRUD::field('password')->type('password');
+        CRUD::addField([
+            'name'        => 'is_admin', // the name of the db column
+            'label'       => 'Roles', // the input label
+            'type'        => 'radio',
+            'options'     => [
+                // the key will be stored in the db, the value will be shown as label;
+                2 => "SuperAdmin",
+                1 => "Admin",
+                0 => "User"
+            ],
+        ]);
     }
 }

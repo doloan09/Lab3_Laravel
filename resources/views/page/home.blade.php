@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Home')
+@section('title', 'The News - Home')
 
 @section('content')
 
@@ -10,7 +10,7 @@
             <div class="md:grid md:grid-cols-3 md:gap-10">
                 <div class="col-span-2">
                     <div class="relative pb-2 md:pb-10">
-                        <img src="/img/img_1.png">
+                        <img src="/img/img_1.png" alt="image">
                         <div
                             class="font-roboto font-bold text-lg ml-4 md:ml-0 md:text-4xl bg-white absolute -mt-14 md:-mt-20 w-5/6 px-6 pt-2">
                             What One Photo Tells Us About North Korea's Nuclear Program
@@ -97,42 +97,42 @@
             </div>
             <div class="gap-4 pb-4 flex overflow-x-auto ">
                 <div class=" flex-shrink-0 relative">
-                    <img src="/img/img_2.png">
+                    <img src="/img/img_2.png" alt="image">
                     <p class="-mt-14 absolute bg-white font-bold ml-6 px-6 text-gray-500 text-xl w-5/6 font-['Merriweather']">
                         Women Do Like to Compete
                         Against Themselves
                     </p>
                 </div>
                 <div class=" flex-shrink-0 relative">
-                    <img src="/img/img_3.png">
+                    <img src="/img/img_3.png" alt="image">
                     <p class="-mt-14 absolute bg-white font-bold ml-6 px-6 text-gray-500 text-xl w-5/6 font-['Merriweather']">
                         Women Do Like to Compete
                         Against Themselves
                     </p>
                 </div>
                 <div class="flex-shrink-0 relative">
-                    <img src="/img/img_4.png">
+                    <img src="/img/img_4.png" alt="image">
                     <p class="-mt-14 absolute bg-white font-bold ml-6 px-6 text-gray-500 text-xl w-5/6 font-['Merriweather']">
                         Women Do Like to Compete
                         Against Themselves
                     </p>
                 </div>
                 <div class="flex-shrink-0 relative">
-                    <img src="/img/img_2.png">
+                    <img src="/img/img_2.png" alt="image">
                     <p class="-mt-14 absolute bg-white font-bold ml-6 px-6 text-gray-500 text-xl w-5/6 font-['Merriweather']">
                         Women Do Like to Compete
                         Against Themselves
                     </p>
                 </div>
                 <div class="flex-shrink-0 relative">
-                    <img src="/img/img_3.png">
+                    <img src="/img/img_3.png" alt="image">
                     <p class="-mt-14 absolute bg-white font-bold ml-6 px-6 text-gray-500 text-xl w-5/6 font-['Merriweather']">
                         Women Do Like to Compete
                         Against Themselves
                     </p>
                 </div>
                 <div class="flex-shrink-0 relative">
-                    <img src="/img/img_4.png">
+                    <img src="/img/img_4.png" alt="image">
                     <p class="-mt-14 absolute bg-white font-bold ml-6 px-6 text-gray-500 text-xl w-5/6 font-['Merriweather']">
                         Women Do Like to Compete
                         Against Themselves
@@ -141,14 +141,14 @@
             </div>
         </div>
         <div class="col-span-1 relative hidden md:block">
-            <img src="/img/img_5.png" class="mt-10 rounded-2xl">
+            <img src="/img/img_5.png" class="mt-10 rounded-2xl" alt="image">
             <div class="absolute -mt-56 px-6">
                 <div class="flex">
                     <div class="w-3 h-3 bg-red-500 rounded-full mt-2"></div>
                     <p class="text-xl font-bold text-red-500 pb-12 ml-2">Live</p>
                 </div>
                 <div class="border-2 border-solid border-gray-400 rounded-full w-16 h-16 mb-4">
-                    <img src="img/img_12.png" class="p-4">
+                    <img src="img/img_12.png" class="p-4" alt="image">
                 </div>
                 <p class="font-bold text-white text-2xl w-4/6">Watch Modi live from G8 Summit</p>
             </div>
@@ -197,7 +197,7 @@
                                 bar in suburban Kansas. Another wounded in a bar in suburban Kansas.
                             </div>
                             <div>
-                                <img src="/img/img_10.png" class="w-70 h-70">
+                                <img src="/img/img_10.png" class="aspect-square md:aspect-auto" alt="image">
                             </div>
                         </div>
                     </div>
@@ -220,7 +220,7 @@
                                 bar in suburban Kansas. Another wounded in a bar in suburban Kansas.
                             </div>
                             <div>
-                                <img src="/img/img_6.png">
+                                <img src="/img/img_6.png" class="aspect-square md:aspect-auto" alt="image">
                             </div>
                         </div>
                     </div>
@@ -278,7 +278,7 @@
                 </div>
                 <div class="md:hidden border-dashed border-b-2 mt-4"></div>
                 <div class="grid grid-cols-2 md:inline-block">
-                    <img src="/img/img_7.png" class="mt-4 md:mt-10">
+                    <img src="/img/img_7.png" class="mt-4 md:mt-10" alt="image">
                     <div class="font-bold py-6 text-xl md:text-2xl text-gray-700 ml-4 md:ml-0 md:my-0">
                         Series win in Australia hugely satisfying: Upul Tharanga
                     </div>
@@ -300,8 +300,8 @@
                     </div>
                 </div>
                 <div
-                    class="md:grid md:grid-cols-3 md:gap-4 md:py-4 md:px-6 md:border-b-2 md:border-l-2 md:border-r-2 md:border-dashed">
-                    <div class="col-span-2 md:border-r-2 md:pr-6">
+                    class="md:grid md:grid-cols-4 md:gap-4 md:py-4 md:px-6 md:border-b-2 md:border-l-2 md:border-r-2 md:border-dashed">
+                    <div class="col-span-3 md:border-r-2 md:pr-6">
                         <div class="hidden md:block md:text-lg py-2 pb-6 cursor-pointer">
                             <div class="flex flex-wrap" id="tabs-id">
                                 <div class="w-full">
@@ -328,13 +328,13 @@
                                             <div class="tab-content tab-space">
                                                 <div class="block" id="tab-Trending">
                                                     <div class="relative">
-                                                        <img src="/img/img_8.png" class="w-full">
+                                                        <img src="/img/img_8.png" class="w-full" alt="image">
                                                         <div class="absolute -mt-28 text-white ml-2 md:w-5/6 md:ml-10">
                                                             <div class="grid grid-cols-6 gap-4">
                                                                 <div class="col-span-1">
                                                                     <div
                                                                         class="border-2 border-solid rounded-full w-16 h-16 mt-4 border-gray-400">
-                                                                        <img src="img/img_12.png" class="p-4">
+                                                                        <img src="img/img_12.png" class="p-4" alt="image">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-span-5">
@@ -358,14 +358,14 @@
                                                     @endif
                                                     <div class="hidden" id="tab-{{ $ls }}">
                                                         <div class="relative">
-                                                            <img src="/img/img_{{ $index }}.png" class="w-full">
+                                                            <img src="/img/img_{{ $index }}.png" class="w-full" alt="image">
                                                             <div
                                                                 class="absolute -mt-28 text-white ml-2 md:w-5/6 md:ml-10">
                                                                 <div class="grid grid-cols-6 gap-4">
                                                                     <div class="col-span-1">
                                                                         <div
                                                                             class="border-2 border-solid rounded-full w-16 h-16 mt-4 border-gray-400">
-                                                                            <img src="img/img_12.png" class="p-4">
+                                                                            <img src="img/img_12.png" class="p-4" alt="image">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-span-5">
@@ -387,32 +387,45 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hidden md:block ">
-                        <div class="relative">
-                            <img src="/img/img_9.png">
-                            <div class="absolute -mt-52 text-white w-5/6 ml-4">
-                                <div class="border-2 border-solid rounded-full w-10 h-10 mt-10 mb-20">
-                                    <img src="img/img_12.png" class="p-2">
-                                </div>
-                                <p>2:30 | By Telegraph</p>
-                            </div>
-                        </div>
-                        <div class="relative py-6">
-                            <img src="/img/img_10.png">
-                            <div class="absolute -mt-52 text-white w-5/6 ml-4">
-                                <div class="border-2 border-solid rounded-full w-10 h-10 mt-10 mb-10">
-                                    <img src="img/img_12.png" class="p-2">
+                    <div class="hidden md:block md:overflow-y-auto h-[40rem]">
+                        <div class="relative pt-6 pb-3">
+                            <img src="/img/img_9.png" alt="image">
+                            <div class="absolute -mt-40 text-white w-5/6 ml-4">
+                                <div class="border-2 border-solid rounded-full w-10 h-10 mb-2">
+                                    <img src="img/img_12.png" class="p-2" alt="image">
                                 </div>
                                 <p class="font-bold text-lg">Isro launches 104 satellites in a single mission to create
                                     world record</p>
                                 <p>2:30 | By Telegraph</p>
                             </div>
                         </div>
-                        <div class="relative">
-                            <img src="/img/img_11.png">
-                            <div class="absolute -mt-52 text-white w-5/6 ml-4">
-                                <div class="border-2 border-solid rounded-full w-10 h-10 mt-10 mb-10">
-                                    <img src="img/img_12.png" class="p-2">
+                        <div class="relative py-3">
+                            <img src="/img/img_10.png" alt="image">
+                            <div class="absolute -mt-40 text-white w-5/6 ml-4">
+                                <div class="border-2 border-solid rounded-full w-10 h-10 mb-2">
+                                    <img src="img/img_12.png" class="p-2" alt="image">
+                                </div>
+                                <p class="font-bold text-lg">Isro launches 104 satellites in a single mission to create
+                                    world record</p>
+                                <p>2:30 | By Telegraph</p>
+                            </div>
+                        </div>
+                        <div class="relative py-3">
+                            <img src="/img/img_11.png" alt="image">
+                            <div class="absolute -mt-40 text-white w-5/6 ml-4">
+                                <div class="border-2 border-solid rounded-full w-10 h-10 mb-2">
+                                    <img src="img/img_12.png" class="p-2" alt="image">
+                                </div>
+                                <p class="font-bold text-lg">Isro launches 104 satellites in a single mission to create
+                                    world record</p>
+                                <p>2:30 | By Telegraph</p>
+                            </div>
+                        </div>
+                        <div class="relative py-3">
+                            <img src="/img/img_9.png" alt="image">
+                            <div class="absolute -mt-40 text-white w-5/6 ml-4">
+                                <div class="border-2 border-solid rounded-full w-10 h-10 mb-2">
+                                    <img src="img/img_12.png" class="p-2" alt="image">
                                 </div>
                                 <p class="font-bold text-lg">Isro launches 104 satellites in a single mission to create
                                     world record</p>
@@ -423,12 +436,12 @@
                 </div>
             </div>
             <div class="relative md:hidden">
-                <img src="/img/img_8.png" class="w-full">
+                <img src="/img/img_8.png" class="w-full" alt="image">
                 <div class="absolute -mt-28 text-white ml-2 md:ml-10">
                     <div class="grid grid-cols-6 gap-4">
                         <div class="col-span-1">
                             <div class="border-2 border-solid rounded-full w-10 h-10 mt-2">
-                                <img src="img/img_12.png" class="p-2">
+                                <img src="img/img_12.png" class="p-2" alt="image">
                             </div>
                         </div>
                         <div class="col-span-5">
@@ -441,14 +454,14 @@
             </div>
             <div class="hidden md:block md:grid md:grid-cols-5 md:gap-6 mt-6 mb-4 md:mb-16">
                 <div class="border-dashed border-b-2 md:border-0">
-                    <img src="/img/img_13.png">
+                    <img src="/img/img_13.png" alt="image">
                     <p class="font-bold py-6 text-xl text-gray-700 font-['Merriweather']">The Intimate Lens of Ed van
                         der Elsken</p>
                     <p class=" text-gray-600 text-lg font-roboto">Two European museums are presenting retrospectives of
                         a man many consider to be one of the best street photographers of the 20th century.</p>
                 </div>
                 <div class="mt-4 md:mt-0">
-                    <img src="/img/img_14.png">
+                    <img src="/img/img_14.png" alt="image">
                     <p class="font-bold py-6 text-xl text-gray-700 font-['Merriweather']">Gauging the Art Market’s
                         Health</p>
                     <p class=" text-gray-600 text-lg font-roboto">Auctions of Impressionist, modern and Surrealist art
@@ -456,7 +469,7 @@
                         the U.S.</p>
                 </div>
                 <div class="hidden md:block ">
-                    <img src="/img/img_15.png">
+                    <img src="/img/img_15.png" alt="image">
                     <p class="font-bold py-6 text-xl text-gray-700 font-['Merriweather']">What happen when you skip
                         breakfast</p>
                     <p class=" text-gray-600 text-lg font-roboto">The old saying, ‘Eat breakfast like a king, lunch like
@@ -464,14 +477,14 @@
                         breakfast.</p>
                 </div>
                 <div class="hidden md:block ">
-                    <img src="/img/img_16.png">
+                    <img src="/img/img_16.png" alt="image">
                     <p class="font-bold py-6 text-xl text-gray-700 font-['Merriweather']">In London, the Rise of
                         Old-Fashioned </p>
                     <p class=" text-gray-600 text-lg font-roboto">Two European museums are presenting retrospectives of
                         a man many consider to be one of the best street photographers of the 20th century.</p>
                 </div>
                 <div class="hidden md:block ">
-                    <img src="/img/img_17.png">
+                    <img src="/img/img_17.png" alt="image">
                     <p class="font-bold py-6 text-xl text-gray-700 font-['Merriweather']">6 myths about keeping an
                         aquarium</p>
                     <p class=" text-gray-600 text-lg font-roboto">Keeping fish in aquariums is a hobby which is quite
@@ -490,7 +503,7 @@
                             best street photographers of the 20th century.
                         </div>
                         <div>
-                            <img src="/img/img_13.png">
+                            <img src="/img/img_13.png" alt="image">
                         </div>
                     </div>
                 </div>
@@ -504,7 +517,7 @@
                             first major test of buoyancy since the inauguration in the U.S.
                         </div>
                         <div>
-                            <img src="/img/img_14.png">
+                            <img src="/img/img_14.png" alt="image">
                         </div>
                     </div>
                 </div>
