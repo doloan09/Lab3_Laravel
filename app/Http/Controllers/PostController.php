@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,11 +19,18 @@ class PostController extends Controller
         //
     }
 
-    public function listNews($name){
+    public function listNews($slug){
         $user = Auth::user();
-        $listA = array("World", "Politics", "Business", "Opinion", "Tech", "Science", "Health", "Sports", "Entertainment", "Travel", "More");
 
-        return view('post.list_news', compact('listA', 'name', 'user'));
+        $lstArticles = new Article();
+        $lstArticles = $lstArticles->showArticles($slug); // danh sach tat ca cac bai viet
+
+        $listCate = new Category();
+        $listCategory = $listCate->showCategory(); /// danh sach tat ca category
+        $Cate = $listCate->showName($slug); // lay ra ten cua 1 category thong qua slug
+
+//        dd($Cate);
+        return view('post.list_news', compact('listCategory', 'lstArticles','Cate', 'user', 'slug'));
     }
 
     /**
@@ -51,12 +60,19 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name, $item)
+    public function show($name, $item) // name=slug_category; item = slug_article
     {
         $user = Auth::user();
-        $listA = array("World", "Politics", "Business", "Opinion", "Tech", "Science", "Health", "Sports", "Entertainment", "Travel", "More");
 
-        return view('post.detail', compact('listA', 'name', 'item', 'user'));
+        $lstArt = new Article();
+        $lstArticles = $lstArt->showItem($item); // lay ra chi tiet cua 1 bai viet
+        $listArt = $lstArt->showListArticles($name);
+
+        $listCate = new Category();
+        $listCategory = $listCate->showCategory(); // danh sach category
+        $Cate = $listCate->showName($name);
+
+        return view('post.detail', compact('listCategory','item', 'user', 'lstArticles', 'name', 'Cate', 'listArt'));
     }
 
 

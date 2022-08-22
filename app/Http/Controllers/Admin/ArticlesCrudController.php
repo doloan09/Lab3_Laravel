@@ -8,6 +8,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 /**
  * Class CategoryCrudController
@@ -44,6 +45,7 @@ class ArticlesCrudController extends CrudController
     {
         CRUD::column('tittle');
         CRUD::column('contents');
+        CRUD::column('slug');
         CRUD::column('date');
         CRUD::column('view');
 
@@ -51,8 +53,9 @@ class ArticlesCrudController extends CrudController
             'name' => 'image', // The db column name
             'label' => "Image", // Table column heading
             'type' => 'image',
-            'disk' => 'storage',
+//            'disk' => 'storage',
         ]);
+
         CRUD::column('author');
 //        CRUD::addColumn([
 //            'name' => 'id_category', // The db column name
@@ -108,6 +111,8 @@ class ArticlesCrudController extends CrudController
             // OPTIONALS
             // 'escaped' => true // echo using {{ }} instead of {!! !!}
         ]);
+
+        CRUD::column('slug');
         CRUD::column('date');
         CRUD::column('view');
 
@@ -115,7 +120,7 @@ class ArticlesCrudController extends CrudController
             'name' => 'image', // The db column name
             'label' => "Image", // Table column heading
             'type' => 'image',
-            'disk' => 'storage',
+//            'disk' => 'storage',
         ]);
         CRUD::column('author');
 
@@ -223,6 +228,7 @@ class ArticlesCrudController extends CrudController
         $description = $this->domDoc($description);
 
         $summernote->tittle = $request->tittle;
+        $summernote->slug = Str::slug($request->tittle);
         $summernote->contents = $description;
         $summernote->date = $request->date;
         $summernote->author = $request->author;
@@ -244,6 +250,7 @@ class ArticlesCrudController extends CrudController
 
         $article->update([
             'tittle' => $request->tittle,
+            'slug' => Str::slug($request->tittle),
             'contents' => $description,
             'date' => $request->date,
             'author' => $request->author,
@@ -262,6 +269,7 @@ class ArticlesCrudController extends CrudController
             $images = $dom->getElementsByTagName('img');
 
             foreach ($images as $k => $img) {
+                dd($img);
                 $data = $img->getAttribute('src');
 
                 $pos = strpos($data, ';');

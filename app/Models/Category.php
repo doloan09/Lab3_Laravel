@@ -29,6 +29,14 @@ class Category extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function showCategory(){
+        return Category::select('*')->get();
+    }
+
+    public function showName($slug){
+        $item = Category::select('*')->where('slug', $slug)->first();
+        return $item;
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS

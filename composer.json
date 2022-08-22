@@ -13,7 +13,9 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^2.14.1",
         "laravel/socialite": "^5.5",
-        "laravel/tinker": "^2.7"
+        "laravel/tinker": "^2.7",
+        "spatie/crawler": "^7.1",
+        "symfony/dom-crawler": "^6.1"
     },
     "require-dev": {
         "backpack/generators": "^3.1",

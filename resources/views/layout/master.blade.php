@@ -9,7 +9,7 @@
     @vite('resources/js/app.js')
 
     <title>@yield('title')</title>
-
+    <link rel="canonical" href="http://lab3-laravel.com/home">
 </head>
 <body>
 @include('layout.header')
@@ -21,4 +21,5 @@
 @stack('scripts')
 
 @include('layout.footer')
+
 

@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PageController::class, 'index'])->name('home');
+Route::get('/', [\App\Http\Controllers\CustomCrawlerController::class, 'fetchContent']);
+///Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/home', [PageController::class, 'index'])->name('home');
 Route::get('/list-news/{name}', [PostController::class, 'listNews'])->name('list-news');
 Route::get('/list-news/{name}/{item}', [PostController::class, 'show'])->name('lost-news.item');

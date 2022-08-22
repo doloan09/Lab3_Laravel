@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CategoryRequest;
+use App\Models\Category;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 /**
  * Class CategoryCrudController
@@ -79,5 +82,28 @@ class CategoryCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    public function store(CategoryRequest $request)
+    {
+        $category= new Category();
+
+        $category->name = $request->name;
+        $category->slug = Str::slug($request->name);
+
+        $category->save();
+        return redirect('admin/category');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $article = Category::findOrFail($id);
+
+        $article->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+        ]);
+
+        return redirect('admin/category');
     }
 }

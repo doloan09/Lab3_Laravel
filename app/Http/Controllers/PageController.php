@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,7 +40,10 @@ class PageController extends Controller
 
             $user = Auth::user();
 
-            return view('page.home', compact('listVides', 'listEnterTaiment', 'lstTopStore', 'user'));
+            $listCategory = new Category();
+            $listCategory = $listCategory->showCategory();
+
+            return view('page.home', compact('listVides', 'listEnterTaiment', 'lstTopStore', 'user', 'listCategory'));
         }
 
     /**

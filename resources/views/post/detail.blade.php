@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('title')
-    {{$item}}
+    {{ $lstArticles->name }}
 @endsection
 
 @section('content')
@@ -12,17 +12,17 @@
             <a href="/home">Home ></a>
         </div>
         <div class=" px-4 cursor-pointer">
-            <a href="/list-news/{{$name}}">{{$name}} > </a>
+            <a href="/list-news/{{ $name }}">{{ $Cate->name }} > </a>
         </div>
-        <div class="text-blue-700 cursor-pointer"> {{$item}}</div>
+        <div class="text-blue-700 cursor-pointer"> {{ $lstArticles->tittle }}</div>
     </div>
     <div class="grid grid-cols-4 gap-6 relative">
         <div class="col-span-4 md:col-span-3">
 {{--            <div class="font-bold text-gray-600 border-gray-300 text-center bg-[#FBFF22] w-5/12 md:w-2/12 py-2  text-lg">{{ strtoupper($name)}}</div>--}}
             <div
-                class="bg-gray-300 text-black font-bold text-left px-4 py-2 text-xl md:text-2xl">{{ strtoupper($name)}}
+                class="bg-gray-300 text-black font-bold text-left px-4 py-2 text-xl md:text-2xl">{{$Cate->name }}
             </div>
-            <div class="font-bold text-black text-3xl md:text-4xl mt-6">{{$item}}</div>
+            <div class="font-bold text-black text-3xl md:text-4xl mt-6">{{$lstArticles->tittle}}</div>
             <div class="mt-4 md:mt-6 text-gray-400 grid grid-cols-6">
                 <div class="col-span-3 md:col-span-1">
                     <div class="float-left md:mt-1 mr-2">
@@ -30,7 +30,7 @@
                             <path d="M9 6V9L11.25 11.25L9 6ZM15.75 9C15.75 9.88642 15.5754 10.7642 15.2362 11.5831C14.897 12.4021 14.3998 13.1462 13.773 13.773C13.1462 14.3998 12.4021 14.897 11.5831 15.2362C10.7642 15.5754 9.88642 15.75 9 15.75C8.11358 15.75 7.23583 15.5754 6.41689 15.2362C5.59794 14.897 4.85382 14.3998 4.22703 13.773C3.60023 13.1462 3.10303 12.4021 2.76381 11.5831C2.42459 10.7642 2.25 9.88642 2.25 9C2.25 7.20979 2.96116 5.4929 4.22703 4.22703C5.4929 2.96116 7.20979 2.25 9 2.25C10.7902 2.25 12.5071 2.96116 13.773 4.22703C15.0388 5.4929 15.75 7.20979 15.75 9Z" stroke="#434343" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
-                    <p class="text-sm md:text-lg">25 thg 7, 2022</p>
+                    <p class="text-sm md:text-lg">{{ $lstArticles->date  }}</p>
                 </div>
                 <div class="col-span-4 hidden md:block"></div>
                 <div class="col-span-3 md:col-span-1 grid grid-cols-2">
@@ -54,30 +54,20 @@
                 </div>
             </div>
             <div class="mt-10">
-                <img src="/img/img_1.png" class="w-full h-3/5">
+                <img src="{{ $lstArticles->image }}" class="w-full h-3/5">
             </div>
             <div class="mb-16 mt-4">
                 <div class="grid grid-cols-1">
                     <p class="pb-4 text-sm">Clues from a propaganda photo reveal details about North Korea’s </p>
                     <p class="mb-6 text-xl leading-loose">
-                        Two European museums are presenting retrospectives of a man many consider to be one of the best street photographers of the 20th century.
-                        Auctions of Impressionist, modern and Surrealist art at Sotheby’s and Christie’s will be the first major test of buoyancy since the inauguration in the U.S.
-                        Auctions of Impressionist, modern and Surrealist art at Sotheby’s and Christie’s will be the first major test of buoyancy since the inauguration in the U.S.
-                        Auctions of Impressionist, modern and Surrealist art at Sotheby’s and Christie’s will be the first major test of buoyancy since the inauguration in the U.S.
-                        Auctions of Impressionist, modern and Surrealist art at Sotheby’s and Christie’s will be the first major test of buoyancy since the inauguration in the U.S.
+                        {{ $lstArticles->contents }}
                     </p>
-                    <p class="mb-6 text-xl leading-loose ">
-                        Two European museums are presenting retrospectives of a man many consider to be one of the best street photographers of the 20th century.
-                        Auctions of Impressionist, modern and Surrealist art at Sotheby’s and Christie’s will be the first major test of buoyancy since the inauguration in the U.S.
-                        Auctions of Impressionist, modern and Surrealist art at Sotheby’s and Christie’s will be the first major test of buoyancy since the inauguration in the U.S.
-                        Auctions of Impressionist, modern and Surrealist art at Sotheby’s and Christie’s will be the first major test of buoyancy since the inauguration in the U.S.
-                        Auctions of Impressionist, modern and Surrealist art at Sotheby’s and Christie’s will be the first major test of buoyancy since the inauguration in the U.S.
-                    </p>
-                    <p class="text-2xl font-bold md:mr-10 mt-32 text-right">John</p>
+
+                    <p class="text-2xl font-bold md:mr-10 mt-32 text-right">{{ $lstArticles->author }}</p>
                 </div>
                 <div class="grid grid-cols-12 md:grid-cols-12 mt-10">
                     <div class="col-span-1 px-2 py-4 md:p-4 border md:w-3/6">
-                        <a href="/list-news/{{$name}}">
+                        <a href="/list-news/{{$lstArticles->slug}}">
                             <svg width="20" height="11" viewBox="0 0 20 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 5.5189H19M5 9.71858L1 5.5189L5 9.71858ZM1 5.5189L5 1.31921L1 5.5189Z" stroke="#434343" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -198,10 +188,10 @@
             <div class="hidden md:block">
                 <div class="font-bold text-gray-600 border-gray-300 text-center bg-gray-300 w-3/12 py-2">CATEGORY</div>
                 <div class="border border-gray-300 mt-8 px-8 py-6 rounded-xl overflow-y-auto h-80">
-                    @foreach($listA as $ls)
-                        @if($ls != $name)
+                    @foreach($listCategory as $ls)
+                        @if($ls->name != $name)
                             <div class="border-b-2 border-dashed mb-4 pb-2 pt-4 text-xl">
-                                <a class="text-black cursor-pointer hover:text-blue-700" href="/list-news/{{$ls}}">{{$ls}}</a>
+                                <a class="text-black cursor-pointer hover:text-blue-700" href="/list-news/{{$ls->slug}}">{{$ls->name}}</a>
                             </div>
                         @endif
                     @endforeach
@@ -215,19 +205,15 @@
 
             <div class="md:mt-10">
                 <div class="font-bold text-gray-600 border-gray-300 text-center bg-gray-300 w-3/12 py-2 mb-6">NEWS</div>
-                @php
-                    $tittleNews = "Isro launches 104 satellites in a single mission to create world record"
-                @endphp
-
-                @for($i =13; $i <17; $i++)
+                @for($i = count($listArt)-1; $i > count($listArt) - 5; $i--)
                     <div class="relative pb-4">
-                        <img src="/img/img_{{ $i }}.png" class="w-full rounded-xl">
+                        <img src="{{ $listArt[$i]->image }}" class="w-full rounded-xl">
                         <div
                             class="absolute -mt-32 text-white ml-2 md:w-5/6 md:ml-6">
                             <div class="">
                                 <div class="">
                                     <div class="font-bold text-xl">
-                                        <a href="/list-news/{{$name}}/{{$tittleNews}}">{{$tittleNews}}</a>
+                                        <a href="/list-news/{{$name}}/{{ $listArt[$i]->slug }}">{{ $listArt[$i]->tittle }}</a>
                                     </div>
                                     <p>2:30 | By Telegraph</p>
                                 </div>
@@ -260,15 +246,11 @@
     </div>
 
     <div class="gap-4 pb-4 flex overflow-x-auto border-b-2 my-10">
-        @php
-            $tittle = "Women Do Like to Compete Against Themselves"
-        @endphp
-
-        @for( $i =2; $i<6; $i++)
+        @foreach($listArt as $ls)
             <div class=" flex-shrink-0 border border-gray-300 rounded-xl p-4 md:w-1/4 w-full">
-                <img src="/img/img_{{ $i }}.png" class="rounded-xl w-full h-56">
+                <img src="{{ $ls->image }}" class="rounded-xl w-full h-56">
                 <div class="bg-white font-bold ml-6 text-gray-500 text-xl w-5/6 font-roboto mt-6 ">
-                    <a href="/list-news/{{$name}}/{{$tittle}}">{{ $tittle }}</a>
+                    <a href="/list-news/{{$name}}/{{ $ls->slug }}">{{ $ls->tittle }}</a>
                 </div>
                 <div class="mt-4 md:mt-6 text-gray-400 grid grid-cols-2 md:grid-cols-3">
                     <div class="col-span-1 flex">
@@ -277,7 +259,7 @@
                                 <path d="M9 6V9L11.25 11.25L9 6ZM15.75 9C15.75 9.88642 15.5754 10.7642 15.2362 11.5831C14.897 12.4021 14.3998 13.1462 13.773 13.773C13.1462 14.3998 12.4021 14.897 11.5831 15.2362C10.7642 15.5754 9.88642 15.75 9 15.75C8.11358 15.75 7.23583 15.5754 6.41689 15.2362C5.59794 14.897 4.85382 14.3998 4.22703 13.773C3.60023 13.1462 3.10303 12.4021 2.76381 11.5831C2.42459 10.7642 2.25 9.88642 2.25 9C2.25 7.20979 2.96116 5.4929 4.22703 4.22703C5.4929 2.96116 7.20979 2.25 9 2.25C10.7902 2.25 12.5071 2.96116 13.773 4.22703C15.0388 5.4929 15.75 7.20979 15.75 9Z" stroke="#434343" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
-                        <p class="text-sm">25 thg 7, 2022</p>
+                        <p class="text-sm">{{ $ls->date }}</p>
                     </div>
                     <div class="hidden md:block"></div>
                     <div class="col-span-1 grid grid-cols-4">
@@ -302,7 +284,7 @@
                     </div>
                 </div>
             </div>
-        @endfor
+        @endforeach
     </div>
 </div>
 
