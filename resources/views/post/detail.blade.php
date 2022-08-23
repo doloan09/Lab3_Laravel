@@ -53,18 +53,14 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-10">
-                <img src="{{ $lstArticles->image }}" class="w-full h-3/5">
-            </div>
+{{--            <div class="mt-10">--}}
+{{--                <img src="{{ $lstArticles->image }}" class="w-full h-3/5">--}}
+{{--            </div>--}}
             <div class="mb-16 mt-4">
-                <div class="grid grid-cols-1">
-                    <p class="pb-4 text-sm">Clues from a propaganda photo reveal details about North Korea’s </p>
-                    <p class="mb-6 text-xl leading-loose">
-                        {{ $lstArticles->contents }}
-                    </p>
+                <div class="text-2xl mb-6">{!! $lstArticles->description !!}</div>
 
-                    <p class="text-2xl font-bold md:mr-10 mt-32 text-right">{{ $lstArticles->author }}</p>
-                </div>
+                {!! $lstArticles->contents !!}
+
                 <div class="grid grid-cols-12 md:grid-cols-12 mt-10">
                     <div class="col-span-1 px-2 py-4 md:p-4 border md:w-3/6">
                         <a href="/list-news/{{$lstArticles->slug}}">
@@ -289,3 +285,33 @@
 </div>
 
 @endsection
+
+@push('scripts')
+    <script>
+        var imgEl = document.getElementsByTagName('img');
+        for (var i = 0; i < imgEl.length; i++) {
+            if (imgEl[i].getAttribute('data-src')) {
+                imgEl[i].setAttribute('src', imgEl[i].getAttribute('data-src'));
+                imgEl[i].removeAttribute('data-src'); //use only if you need to remove data-src attribute after setting src
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+        removeHidden();
+        function removeHidden(){
+            $('ul.list-news').show();
+            $('ul.list-news').addClass("text-blue-600");
+            $('ul.list-news').addClass("list-disc");
+            $('ul.list-news').addClass("ml-10");
+            $('figure').addClass("my-6");
+            $('figcaption').addClass("mt-4");
+            $('p.Normal').addClass("mb-4");
+            $('p.Normal').addClass("text-xl");
+            $('p.Normal a').addClass("text-blue-600");
+            $('p.Normal a').addClass("underline decoration-1");
+            $('span.location-stamp').addClass("text-gray-500");
+            $('span.location-stamp').addClass("mr-4");
+        }
+    </script>
+@endpush

@@ -11,7 +11,7 @@ use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\DomCrawler\Crawler;
 
-class CrawlerCategoryObserver extends CrawlObserver {
+class CrawlerLinkCategoryObserver extends CrawlObserver {
 
     private $content;
 
@@ -42,12 +42,6 @@ class CrawlerCategoryObserver extends CrawlObserver {
         ?UriInterface $foundOnUrl = null
     ): void
     {
-//        $doc = new DOMDocument();
-//        @$doc->loadHTML($response->getBody());
-//        //# save HTML
-//        $content = $doc->saveHTML();
-//
-//        $crawler = new Crawler($content);
         $crawler = new Crawler((string)$response->getBody());
 
         $ca = $crawler->filter("#wrap-main-nav > nav > ul > li");

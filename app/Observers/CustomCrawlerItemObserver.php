@@ -4,7 +4,6 @@ namespace App\Observers;
 use App\Models\Article;
 use App\Models\Category;
 use DOMDocument;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Spatie\Crawler\CrawlObservers\CrawlObserver;
 use Psr\Http\Message\UriInterface;
@@ -45,66 +44,111 @@ class CustomCrawlerItemObserver extends CrawlObserver {
         ?UriInterface $foundOnUrl = null
     ): void
     {
-        $doc = new DOMDocument();
+//        $doc = new DOMDocument();
 
-        @$doc->loadHTML($response->getBody());
+//        @$doc->loadHTML('<meta http-equiv="Content-Type" content="text/html; charset=utf-8">' . $response->getBody());
             //# save HTML
-        $content = $doc->saveHTML();
+//        $content = $doc->saveHTML();
 
-        $crawler = new Crawler($content);
+//        $crawler = new Crawler($content);
 
-        $title = $crawler->filter('.title-detail')->text();
-        $contentArticle = $crawler->filter('.Normal');
-        $description = $crawler->filter('.description')->text();
-        $category = $crawler->filter("#dark_theme > section.section.page-detail.top-detail > div > div.sidebar-1 > div.header-content.width_common > ul > li:nth-child(1) > a")->text();
+        $crawler = new Crawler((string)$response->getBody());
+
+//        $title = $crawler->filter('.title-detail')->text();
+        $title = $this->crawlData('.title-detail', $crawler);
+        $description = $this->crawlDataHtml('.description', $crawler);
+        $contentArticle = $this->crawlDataHtml("#dark_theme > section.section.page-detail.top-detail > div > div.sidebar-1 > article", $crawler);
+
+        $category = $this->crawlData("#dark_theme > section.section.page-detail.top-detail > div > div.sidebar-1 > div.header-content.width_common > ul > li:nth-child(1) > a", $crawler);
 
         // image
-        $img = $crawler->filter("#dark_theme > section.section.page-detail.top-detail > div > div.sidebar-1 > article > figure > div.fig-picture > picture > img");
-        $img = $img->attr('data-src');
+//        $img = $crawler->filter("#dark_theme > section.section.page-detail.top-detail > div > div.sidebar-1 > article > figure > div.fig-picture > picture > img");
+//        $img = $img->attr('data-src');
+        $image = "";
+        $img = $crawler->filter("#dark_theme > section.section.page-detail.top-detail > div > div.sidebar-1 > article > figure > div.fig-picture > picture > img")->each(function ($node) {
+            return $node->attr('data-src');
+        });
+
+        if (!empty($img)){
+            $image = $img[0];
+        }
 
         // id_category
-        $cate = Category::where('slug', Str::slug(mb_convert_encoding($category, "ISO-8859-1", "UTF-8")))->first();
-        if (!$cate){
+        $cate = Category::where('slug', Str::slug($category))->first();
+        if (!$cate && $category){
             Category::create([
-                'name' => mb_convert_encoding($category, "ISO-8859-1", "UTF-8"),
-                'slug' => Str::slug(mb_convert_encoding($category, "ISO-8859-1", "UTF-8"))
+                'name' => $category,
+                'slug' => Str::slug($category)
             ]);
         }
 
-        $idCate = Category::where('slug', Str::slug(mb_convert_encoding($category, "ISO-8859-1", "UTF-8")))->first();
-        $idCate = $idCate->id;
-
-        //date
-        $time = $crawler->filter('.date')->text();
-        $date = explode(", ", $time);
-        $date = explode("/", $date[1]);
-        $date = $date[2]. "-". $date[1] . "-" . $date[0];
-
-        /// contents
-        $contentMain = "";
-        foreach ($contentArticle as $item) {
-            $contentMain .= $item->textContent;
+        $idCate = Category::where('slug', Str::slug($category))->first();
+        if ($idCate) {
+            $idCate = $idCate->id;
+        }else{
+            $idCate = "";
         }
 
-        ///author
-        $t = strrev($contentMain);
-        $x = explode(".", $t);
-        $author = strrev($x[0]);
+        //date
+        $date = "";
+        $time = $crawler->filter('.date')->each(function ($node) {
+            return $node->text();
+        });
+
+        if (!empty($time)){
+            $date = explode(", ", $time[0]);
+            $date = explode("/", $date[1]);
+            $date = $date[2]. "-". $date[1] . "-" . $date[0];
+        }
+
+        /// contents
+//        $author = $crawler->filter('.Normal')->last();
+//        $author = $author->text();
+        $author = "";
 
         ///data
-        $dataPost = [
-            'tittle' => mb_convert_encoding($title, "ISO-8859-1", "UTF-8"),
-            'contents' => mb_convert_encoding($contentMain, "ISO-8859-1", "UTF-8"),
-            'description' => mb_convert_encoding($description, "ISO-8859-1", "UTF-8"),
-            'author' => mb_convert_encoding($author, "ISO-8859-1", "UTF-8"),
-            'date' => $date,
-            'id_category' => $idCate,
-            'image' => $img,
-            'slug' => Str::slug(mb_convert_encoding($title, "ISO-8859-1", "UTF-8"))
-        ];
+        $checkTitle = Article::select('tittle')->where('tittle', $title)->first();
+        if (!$checkTitle && $title) {
+            $dataPost = [
+                'tittle' => $title,
+                'contents' => $contentArticle,
+                'description' => $description,
+                'author' => $author,
+                'date' => $date,
+                'id_category' => $idCate,
+                'image' => $image,
+                'slug' => Str::slug($title)
+            ];
 
-        Article::create($dataPost);
+            Article::create($dataPost);
+        }
 
+    }
+
+    protected function crawlData(string $type, $crawler)
+    {
+        $result = $crawler->filter($type)->each(function ($node) {
+            return $node->text();
+        });
+
+        if(!empty($result)) {
+            return $result[0];
+        }
+
+        return '';
+    }
+
+    protected function crawlDataHtml(string $type, $crawler)
+    {
+        $result = $crawler->filter($type)->each(function ($node) {
+            return $node->html();
+        });
+
+        if(!empty($result)) {
+            return $result[0];
+        }
+
+        return '';
     }
 
     /**

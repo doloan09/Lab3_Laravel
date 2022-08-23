@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('tittle');
-            $table->string('contents', 15000);
+            $table->longText('contents');
             $table->date('date');
             $table->integer('view')->nullable();
             $table->string('image')->nullable();
-            $table->string('author');
+            $table->string('author')->nullable();
             $table->unsignedBigInteger('id_category');
             $table->foreign('id_category')->references('id')->on('categories');
             $table->timestamps();

@@ -36,7 +36,7 @@ class ScrapeArticle extends Command
             ->acceptNofollowLinks()
             ->ignoreRobots()
             ->setCurrentCrawlLimit(1)
-            ->setParseableMimeTypes(['text/html', 'text/plain'])
+//            ->setParseableMimeTypes(['text/html', 'text/plain'])
             ->setCrawlObserver(new CustomCrawlerObserver())
             ->setCrawlProfile(new CrawlInternalUrls($this->argument('url')))
             ->setMaximumResponseSize(1024 * 1024 * 2) // 2 MB maximum

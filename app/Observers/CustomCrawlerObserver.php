@@ -3,9 +3,7 @@
 namespace App\Observers;
 
 use DOMDocument;
-//use Spatie\Crawler\Crawler;
 use GuzzleHttp\RequestOptions;
-use phpDocumentor\Reflection\DocBlock\Tags\Link;
 use Spatie\Crawler\Crawler as Cr;
 use Spatie\Crawler\CrawlObservers\CrawlObserver;
 use Psr\Http\Message\UriInterface;
@@ -46,34 +44,55 @@ class CustomCrawlerObserver extends CrawlObserver {
         ?UriInterface $foundOnUrl = null
     ): void
     {
-            $doc = new DOMDocument();
-            @$doc->loadHTML($response->getBody());
-//            //# save HTML
-            $content = $doc->saveHTML();
-
-            $crawler = new Crawler($content);
+//            $doc = new DOMDocument();
+//            @$doc->loadHTML($response->getBody());
+////            //# save HTML
+//            $content = $doc->saveHTML();
+//
+//            $crawler = new Crawler($content);
+            $crawler = new Crawler((string)$response->getBody());
 
             $linkPost = $crawler->filter('h2.title-news a')->each(function ($node) {
                 return $node->attr("href");
             });
 
-            foreach ($linkPost as $link) {
-                print($link . "\n");
-                Cr::create([RequestOptions::ALLOW_REDIRECTS => true, RequestOptions::TIMEOUT => 30])
-                    ->acceptNofollowLinks()
-                    ->ignoreRobots()
-                    ->setCurrentCrawlLimit(1)
-//                    ->setParseableMimeTypes(['text/html', 'text/plain'])
-                    ->setCrawlObserver(new CustomCrawlerItemObserver())
-                    ->setCrawlProfile(new CrawlInternalUrls($link))
-                    ->setMaximumResponseSize(1024 * 1024 * 2) // 2 MB maximum
-                    ->setTotalCrawlLimit(100) // limit defines the maximal count of URLs to crawl
-                    ->setConcurrency(1) // all urls will be crawled one by one
-                    ->setDelayBetweenRequests(100)
-                    ->startCrawling($link);
+            if ($linkPost) {
+                foreach ($linkPost as $link) {
+                    print($link . "\n");
+                    $this->CustomCrawler($link, new CustomCrawlerItemObserver());
+                }
             }
+
+//            $linkNext = $crawler->filter("#pagination > div > a.btn-page.active")->nextAll();
+            $linkNext = $crawler->filter("#pagination > div > a.btn-page.active")->each(function ($node) {
+                return $node->nextAll();
+            });
+
+            if (!empty($linkNext)) {
+                $scheme = (string)$url->getScheme();
+                $host = (string)$url->getHost();
+                $linkPage = $scheme . "://" . $host . $linkNext[0]->attr("href");
+                print("page: " . $linkPage . "\n");
+
+                $this->CustomCrawler($linkPage, new CustomCrawlerObserver());
+            }
+
     }
 
+    public function CustomCrawler($link, $nameObserver){
+        Cr::create([RequestOptions::ALLOW_REDIRECTS => true, RequestOptions::TIMEOUT => 30])
+            ->acceptNofollowLinks()
+            ->ignoreRobots()
+            ->setCurrentCrawlLimit(1)
+            //                    ->setParseableMimeTypes(['text/html', 'text/plain'])
+            ->setCrawlObserver($nameObserver)
+            ->setCrawlProfile(new CrawlInternalUrls($link))
+            ->setMaximumResponseSize(1024 * 1024 * 2) // 2 MB maximum
+            ->setTotalCrawlLimit(100) // limit defines the maximal count of URLs to crawl
+            ->setConcurrency(1) // all urls will be crawled one by one
+            ->setDelayBetweenRequests(100)
+            ->startCrawling($link);
+    }
     /**
      * Called when the crawler had a problem crawling the given url.
      *

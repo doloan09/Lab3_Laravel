@@ -61,7 +61,7 @@
                             <div class="col-span-2 font-roboto">
                                 <a href="/list-news/{{$slug}}/{{ $lst->slug }}"
                                    class="font-medium text-lg md:text-2xl text-gray-700">{{$lst->tittle}}</a>
-                                <p class="hidden md:block mt-2 text-xl">{{ $lst->description }}</p>
+                                <p class="hidden md:block mt-2 text-xl">{!! $lst->description !!}</p>
                                 <div class="mt-4 md:mt-20">
                                     <div class="float-left mt-1 mr-2">
                                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
@@ -98,6 +98,15 @@
             var selectedValue = selectBox.options[selectBox.selectedIndex].value;
             window.location.href = "/list-news/" + selectedValue;
         }
-
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+        removeHidden();
+        function removeHidden(){
+            $('span.location-stamp').addClass("text-gray-500");
+            $('span.location-stamp').addClass("mr-4");
+        }
     </script>
 @endpush
+
+
