@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Spatie\Crawler\CrawlProfiles\CrawlInternalUrls;
 use Symfony\Component\DomCrawler\Crawler;
 
-class CrawlerLinkCategoryObserver extends CrawlObserver {
+class CrawlListArticleObserver extends CrawlObserver {
 
     private $content;
 
@@ -25,8 +25,8 @@ class CrawlerLinkCategoryObserver extends CrawlObserver {
      */
     public function willCrawl(UriInterface $url): void
     {
-//        Log::info('willCrawl',['url'=>$url]);
-        echo "Now crawling: " . (string) $url . PHP_EOL;
+        Log::info('willCrawl',['url'=>$url]);
+//        echo "Now crawling: " . (string) $url . PHP_EOL;
     }
 
     /**
@@ -44,45 +44,28 @@ class CrawlerLinkCategoryObserver extends CrawlObserver {
     {
         $crawler = new Crawler((string)$response->getBody());
 
-        $linkPost = $crawler->filter("a")->each(function ($node) {
+        $linkPost = $crawler->filter('h2.title-news a')->each(function ($node) {
             return $node->attr("href");
         });
 
-        foreach ($linkPost as $ls){
-            print $ls . "\n";
+        if ($linkPost) {
+            foreach ($linkPost as $link) {
+                print($link . "\n");
+
+                Cr::create([RequestOptions::ALLOW_REDIRECTS => true, RequestOptions::TIMEOUT => 30])
+                    ->acceptNofollowLinks()
+                    ->ignoreRobots()
+                    ->setCurrentCrawlLimit(1)
+//                        ->setParseableMimeTypes(['text/html', 'text/plain'])
+                    ->setCrawlObserver(new CustomCrawlerItemObserver())
+                    ->setCrawlProfile(new CrawlInternalUrls($link))
+                    ->setMaximumResponseSize(1024 * 1024 * 2) // 2 MB maximum
+                    ->setTotalCrawlLimit(100) // limit defines the maximal count of URLs to crawl
+                    ->setConcurrency(1) // all urls will be crawled one by one
+                    ->setDelayBetweenRequests(100)
+                    ->startCrawling($link);
+            }
         }
-//        $linkPost = $crawler->filter("nav.main-nav ul.parent li a")->each(function ($node) {
-//            return $node->attr("href");
-//        });
-//
-//        if ($linkPost) {
-//            foreach ($linkPost as $link) {
-//                $char = strpos($link, 'javascript:;');
-//                $http = strpos($link, "https://");
-//
-//                if ($char === false && $http === false) {
-//                    print($link . "\n");
-//                    $scheme = (string)$url->getScheme();
-//                    $host = (string)$url->getHost();
-//                    $linkPage = $scheme . "://" . $host . $link;
-//
-//                    print("linkpage: " . $linkPage . "\n");
-//
-//                    Cr::create([RequestOptions::ALLOW_REDIRECTS => true, RequestOptions::TIMEOUT => 30])
-//                        ->acceptNofollowLinks()
-//                        ->ignoreRobots()
-//                        ->setCurrentCrawlLimit(1)
-////                        ->setParseableMimeTypes(['text/html', 'text/plain'])
-//                        ->setCrawlObserver(new CrawlListTagInCategory())
-//                        ->setCrawlProfile(new CrawlInternalUrls($linkPage))
-//                        ->setMaximumResponseSize(1024 * 1024 * 2) // 2 MB maximum
-//                        ->setTotalCrawlLimit(100) // limit defines the maximal count of URLs to crawl
-//                        ->setConcurrency(1) // all urls will be crawled one by one
-//                        ->setDelayBetweenRequests(100)
-//                        ->startCrawling($linkPage);
-//                }
-//            }
-//        }
     }
 
     /**

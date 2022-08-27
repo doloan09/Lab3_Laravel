@@ -1,60 +1,55 @@
 <?php
-namespace App\Observers;
+
+namespace App\Observers\Crawler;
 
 use App\Models\Article;
 use App\Models\Category;
-use DOMDocument;
-use Illuminate\Support\Str;
-use Spatie\Crawler\CrawlObservers\CrawlObserver;
-use Psr\Http\Message\UriInterface;
-use Psr\Http\Message\ResponseInterface;
+use App\Models\CrawlerQueue;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
+use Psr\Http\Message\UriInterface;
+use Psr\Http\Message\ResponseInterface;
+use Spatie\Crawler\CrawlObservers\CrawlObserver as SpatieCrawlObserver;
 use Symfony\Component\DomCrawler\Crawler;
 
 
-class CustomCrawlerItemObserver extends CrawlObserver {
+class ConsoleObserver extends SpatieCrawlObserver
+{
 
-    private $content;
-
-    public function __construct() {
-        $this->content = NULL;
+    public function __construct(\Illuminate\Console\Command $console)
+    {
+        $this->console = $console;
     }
+
     /**
-     * Called when the crawler will crawl the url.
-     *
-     * @param \Psr\Http\Message\UriInterface $url
+     * @param UriInterface $url
      */
     public function willCrawl(UriInterface $url): void
     {
-        Log::info('willCrawl',['url'=>$url]);
-//        echo "Now crawling: " . (string) $url . PHP_EOL;
+        $this->console->comment("Found: {$url}");
     }
 
     /**
      * Called when the crawler has crawled the given url successfully.
      *
-     * @param \Psr\Http\Message\UriInterface $url
-     * @param \Psr\Http\Message\ResponseInterface $response
-     * @param \Psr\Http\Message\UriInterface|null $foundOnUrl
+     * @param UriInterface $url
+     * @param ResponseInterface $response
+     * @param UriInterface|null $foundOnUrl
      */
-    public function crawled(
-        UriInterface $url,
-        ResponseInterface $response,
-        ?UriInterface $foundOnUrl = null
-    ): void
+    public function crawled(UriInterface $url, ResponseInterface $response, ?UriInterface $foundOnUrl = NULL): void
     {
-//        $doc = new DOMDocument();
+        $this->console->total_crawled++;
 
-//        @$doc->loadHTML('<meta http-equiv="Content-Type" content="text/html; charset=utf-8">' . $response->getBody());
-            //# save HTML
-//        $content = $doc->saveHTML();
-
-//        $crawler = new Crawler($content);
+        // item acabou de ser arquivado, mas não expirado.
+//        $item = CrawlerQueue::onlyTrashed()->url($url)->first();
+//        if ($item->count()) {
+//            $item->html = (string)$response->getBody();
+//            $item->save();
+//        }
 
         $crawler = new Crawler((string)$response->getBody());
 
-//        $title = $crawler->filter('.title-detail')->text();
         $title = $this->crawlData('.title-detail', $crawler);
         $description = $this->crawlDataHtml('.description', $crawler);
         $contentArticle = $this->crawlDataHtml("#dark_theme > section.section.page-detail.top-detail > div > div.sidebar-1 > article", $crawler);
@@ -115,22 +110,22 @@ class CustomCrawlerItemObserver extends CrawlObserver {
 //        }
 
         ///data
-        $checkTitle = Article::select('tittle')->where('tittle', $title)->first();
-        if (!$checkTitle && $title) {
-            $dataPost = [
-                'tittle' => $title,
-                'contents' => $contentArticle,
-                'description' => $description,
-                'author' => $author,
-                'date' => $date,
-                'id_category' => $idCate,
-                'image' => $image,
-                'slug' => Str::slug($title)
-            ];
+//        if ($title) {
+//            $dataPost = [
+//                'tittle' => $title,
+//                'contents' => $contentArticle,
+//                'description' => $description,
+//                'author' => $author,
+//                'date' => $date,
+//                'id_category' => $idCate,
+//                'image' => $image,
+//                'slug' => Str::slug($title)
+//            ];
+//
+//            Article::create($dataPost);
+//        }
 
-            Article::create($dataPost);
-        }
-
+        $this->console->info("Crawled: ({$this->console->total_crawled}) {$url} ({$foundOnUrl})");
     }
 
     protected function crawlData(string $type, $crawler)
@@ -162,9 +157,9 @@ class CustomCrawlerItemObserver extends CrawlObserver {
     /**
      * Called when the crawler had a problem crawling the given url.
      *
-     * @param \Psr\Http\Message\UriInterface $url
-     * @param \GuzzleHttp\Exception\RequestException $requestException
-     * @param \Psr\Http\Message\UriInterface|null $foundOnUrl
+     * @param UriInterface $url
+     * @param RequestException $requestException
+     * @param UriInterface|null $foundOnUrl
      */
     public function crawlFailed(
         UriInterface $url,
@@ -180,8 +175,7 @@ class CustomCrawlerItemObserver extends CrawlObserver {
      */
     public function finishedCrawling(): void
     {
-        Log::info("finishedCrawling");
-        //# store $this->content in DB
-        //# Add logic here
+//        $this->console->info('Crawler: Finished');
+        $this->console->comment('Crawler: Finished');
     }
 }

@@ -3,6 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Http\Controllers\CustomCrawlerController;
+use App\Observers\CrawlerLinkCategoryObserver;
+use App\Observers\CrawlListArticleObserver;
+use App\Observers\CrawlListPageObserver;
+use App\Observers\CrawlListTagInCategory;
 use App\Observers\CustomCrawlerObserver;
 use Illuminate\Console\Command;
 use Spatie\Crawler\Crawler;
@@ -36,8 +40,8 @@ class ScrapeArticle extends Command
             ->acceptNofollowLinks()
             ->ignoreRobots()
             ->setCurrentCrawlLimit(1)
-//            ->setParseableMimeTypes(['text/html', 'text/plain'])
-            ->setCrawlObserver(new CustomCrawlerObserver())
+            ->setParseableMimeTypes(['text/html', 'text/plain'])
+            ->setCrawlObserver(new CrawlerLinkCategoryObserver())
             ->setCrawlProfile(new CrawlInternalUrls($this->argument('url')))
             ->setMaximumResponseSize(1024 * 1024 * 2) // 2 MB maximum
             ->setTotalCrawlLimit(100) // limit defines the maximal count of URLs to crawl
