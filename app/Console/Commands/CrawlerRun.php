@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Observers\Crawler\ConsoleObserver;
-use App\Queues\CrawlerCacheQueue;
+use App\Queues\ModelQueue;
 use Spatie\Crawler\Crawler;
 use Illuminate\Console\Command;
 use Spatie\Crawler\CrawlProfiles\CrawlInternalUrls;
@@ -48,7 +48,7 @@ class CrawlerRun extends Command
         if (is_null($queue)) {
             $this->info('Preparing a new crawler queue');
 
-            $queue = new CrawlerCacheQueue(86400); // one day
+            $queue = new ModelQueue(86400); // one day
         }
 
         // Crawler

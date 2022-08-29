@@ -9,7 +9,7 @@ use Spatie\Crawler\CrawlUrl;
 use Spatie\Crawler\Exceptions\InvalidUrl;
 use Spatie\Crawler\Exceptions\UrlNotFoundByIndex;
 
-class CrawlerCacheQueue implements CrawlQueue
+class ModelQueue implements CrawlQueue
 {
 
     /**

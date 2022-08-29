@@ -69,13 +69,10 @@ class ConsoleObserver extends SpatieCrawlObserver
         }
 
         // id_category
-        $cate = Category::where('slug', Str::slug($category))->first();
-        if (!$cate && $category){
-            Category::create([
-                'name' => $category,
-                'slug' => Str::slug($category)
-            ]);
-        }
+        Category::firstOrCreate([
+            'name' => $category,
+            'slug' => Str::slug($category)
+        ]);
 
         $idCate = Category::where('slug', Str::slug($category))->first();
         if ($idCate) {
@@ -110,20 +107,20 @@ class ConsoleObserver extends SpatieCrawlObserver
 //        }
 
         ///data
-//        if ($title) {
-//            $dataPost = [
-//                'tittle' => $title,
-//                'contents' => $contentArticle,
-//                'description' => $description,
-//                'author' => $author,
-//                'date' => $date,
-//                'id_category' => $idCate,
-//                'image' => $image,
-//                'slug' => Str::slug($title)
-//            ];
-//
-//            Article::create($dataPost);
-//        }
+        if ($title) {
+            $dataPost = [
+                'tittle' => $title,
+                'contents' => $contentArticle,
+                'description' => $description,
+                'author' => $author,
+                'date' => $date,
+                'id_category' => $idCate,
+                'image' => $image,
+                'slug' => Str::slug($title)
+            ];
+
+            Article::create($dataPost);
+        }
 
         $this->console->info("Crawled: ({$this->console->total_crawled}) {$url} ({$foundOnUrl})");
     }
@@ -175,7 +172,6 @@ class ConsoleObserver extends SpatieCrawlObserver
      */
     public function finishedCrawling(): void
     {
-//        $this->console->info('Crawler: Finished');
-        $this->console->comment('Crawler: Finished');
+        $this->console->info('Crawler: Finished');
     }
 }
