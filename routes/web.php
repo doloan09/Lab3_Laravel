@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\CustomCrawlerController::class, 'fetchContent']);
+//Route::get('/', [\App\Http\Controllers\CustomCrawlerController::class, 'fetchContent']);
 ///Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/home', [PageController::class, 'index'])->name('home');
 Route::get('/list-news/{name}', [PostController::class, 'listNews'])->name('list-news');
@@ -27,10 +27,10 @@ Route::get('/list-news/{name}/{item}', [PostController::class, 'show'])->name('l
 //Route::get('/list-news/{name}/{item}', [PostController::class, 'show'])->name('lost-news.item')->middleware('auth', 'verify');
 
 //Login - logout (User)
-Route::get('/login', [AuthController::class, 'loginRequest'])->name('login.request');
-Route::get('/register', [AuthController::class, 'registerRequest'])->name('register.request');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/register', [AuthController::class, 'register'])->name('register');
+Route::get('/login', [AuthController::class, 'loginRequest'])->name('login.request'); // hien thi view login
+Route::get('/register', [AuthController::class, 'registerRequest'])->name('register.request'); // hien thi view sign in
+Route::post('/login', [AuthController::class, 'login'])->name('login'); // login
+Route::post('/register', [AuthController::class, 'register'])->name('register'); //sign in
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 ///Login gg
@@ -55,7 +55,8 @@ Route::post('/reset-password', [ResetPassController::class, 'resetPass'])->middl
 // auth Admin: crud user
 Route::group([
     'prefix' => 'auth/admin',
-    'middleware' => ['auth', 'verified']
+//    'middleware' => ['auth', 'verified']
+    'middleware' => ['auth']
 ], function () {
     Route::get('/list-user', [UserController::class, 'index'])->name('auth-admin.list-user'); // view list user
     Route::get('/register', [UserController::class, 'create'])->name('auth-admin.register.request'); // view create user

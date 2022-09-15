@@ -100,82 +100,84 @@
                     </div>
                 </div>
                 <div class="border rounded-xl border-gray-300 py-4 px-6 mt-10 pb-10">
-                    <div class="text-gray-600 text-2xl mb-4">
-                        <p class="border-b-2 w-1/12">Comment</p>
+                    <div class="text-gray-600 text-2xl mb-8">
+                        <p class="border-b-2 w-1/12">Bình luận</p>
                     </div>
-                    <div class="relative">
-                        <input type="text" placeholder="Your opinion" class="border border-gray-300 rounded-xl px-6 py-2 w-full">
-                        <div class="grid grid-cols-12">
-                            <div class="col-span-11"></div>
-                            <div>
-                                <div class=" absolute -mt-8 md:ml-14">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M14.828 14.828C14.0779 15.5779 13.0607 15.9991 12 15.9991C10.9393 15.9991 9.92211 15.5779 9.172 14.828H14.828ZM9 10H9.01H9ZM15 10H15.01H15ZM21 12C21 13.1819 20.7672 14.3522 20.3149 15.4442C19.8626 16.5361 19.1997 17.5282 18.364 18.364C17.5282 19.1997 16.5361 19.8626 15.4442 20.3149C14.3522 20.7672 13.1819 21 12 21C10.8181 21 9.64778 20.7672 8.55585 20.3149C7.46392 19.8626 6.47177 19.1997 5.63604 18.364C4.80031 17.5282 4.13738 16.5361 3.68508 15.4442C3.23279 14.3522 3 13.1819 3 12C3 9.61305 3.94821 7.32387 5.63604 5.63604C7.32387 3.94821 9.61305 3 12 3C14.3869 3 16.6761 3.94821 18.364 5.63604C20.0518 7.32387 21 9.61305 21 12Z" stroke="#9A9494" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
+                    @comments(['model' => $lstArticles])
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border-dashed border-b-2 my-4"></div>
-                    <div class="pl-4 ">
-                        <div class="flex w-full">
-                            <p class="border rounded-full bg-gray-300 float-left w-10 h-10 px-3 pt-2 text-xl font-bold text-gray-600 mr-2">T</p>
-                            <div class="pt-2">
-                                <p class="font-bold text-lg text-gray-600 float-left pr-4">Tony</p>
-                                <p class="text-gray-600 pt-1">Clues from a propaganda photo reveal details about North Korea’s </p>
-                            </div>
-                        </div>
-                        <div class="mt-4 ml-10 text-gray-600 flex">
-                            <div class="">
-                                <svg width="31" height="28" viewBox="0 0 31 28" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <rect width="31" height="28" fill="url(#pattern0)"/>
-                                    <defs>
-                                        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                            <use xlink:href="#image0_37_238" transform="scale(0.0322581 0.0357143)"/>
-                                        </pattern>
-                                        <image id="image0_37_238" width="31" height="28" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAcCAYAAACZOmSXAAAABHNCSVQICAgIfAhkiAAAABl0RVh0U29mdHdhcmUAZ25vbWUtc2NyZWVuc2hvdO8Dvz4AAAEvSURBVEiJ7datkoMwFIbhl50VqcRGFolFEoms5RpySc0tIJFwDUhk44psZGRWtdPdgZ2ywNbwSeDkyd+cIQohBN6Uj3fBO75KLpcLzrlZNZ9rwcYYAMqyJMuyl+pWWbm1FoA8z6mq6uUdWIx777HWcjweKYoCgNvttj3uvccYw/V6RSnFMAyz6med+X1wKSXDMGCMIYSA1hopJXVdAxBF0eMohBBIKZfj98G11tR1jRACrTVxHAPQ9z0A5/P5W93pdEIptQz/mTiOH7D3nrIsRyfc9/36+HMOhwNJkow+n8qmHc45h7WWNE3/H2+aBiHEZNPZDHfO0XUdSqnJrd8Mv686z/PJbxZdOOccbduOvuu6jqIofr1wf8azLKOqqkn8ud1OJdp/o3Z8x3d8y3wBwgh4NiplcYEAAAAASUVORK5CYII="/>
-                                    </defs>
-                                </svg>
-                            </div>
-                            <p class="">15</p>
-                            <a class=" mx-10">Reply</a>
-                            <a>Share</a>
-                        </div>
-                    </div>
-                    <div class="pl-4 ">
-                        <div class="flex w-full">
-                            <p class="border rounded-full bg-gray-300 float-left w-10 h-10 px-3 pt-2 text-xl font-bold text-gray-600 mr-2">T</p>
-                            <div class="pt-2">
-                                <p class="font-bold text-lg text-gray-600 float-left pr-4">Tony</p>
-                                <p class="text-gray-600 pt-1">Clues from a propaganda photo reveal details about North Korea’s </p>
-                            </div>
-                        </div>
-                        <div class="mt-4 ml-10 text-gray-600 flex">
-                            <div class="">
-                                <svg width="31" height="28" viewBox="0 0 31 28" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <rect width="31" height="28" fill="url(#pattern0)"/>
-                                    <defs>
-                                        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                            <use xlink:href="#image0_37_238" transform="scale(0.0322581 0.0357143)"/>
-                                        </pattern>
-                                        <image id="image0_37_238" width="31" height="28" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAcCAYAAACZOmSXAAAABHNCSVQICAgIfAhkiAAAABl0RVh0U29mdHdhcmUAZ25vbWUtc2NyZWVuc2hvdO8Dvz4AAAEvSURBVEiJ7datkoMwFIbhl50VqcRGFolFEoms5RpySc0tIJFwDUhk44psZGRWtdPdgZ2ywNbwSeDkyd+cIQohBN6Uj3fBO75KLpcLzrlZNZ9rwcYYAMqyJMuyl+pWWbm1FoA8z6mq6uUdWIx777HWcjweKYoCgNvttj3uvccYw/V6RSnFMAyz6med+X1wKSXDMGCMIYSA1hopJXVdAxBF0eMohBBIKZfj98G11tR1jRACrTVxHAPQ9z0A5/P5W93pdEIptQz/mTiOH7D3nrIsRyfc9/36+HMOhwNJkow+n8qmHc45h7WWNE3/H2+aBiHEZNPZDHfO0XUdSqnJrd8Mv686z/PJbxZdOOccbduOvuu6jqIofr1wf8azLKOqqkn8ud1OJdp/o3Z8x3d8y3wBwgh4NiplcYEAAAAASUVORK5CYII="/>
-                                    </defs>
-                                </svg>
-                            </div>
-                            <p class="">15</p>
-                            <a class=" mx-10">Reply</a>
-                            <a>Share</a>
-                        </div>
-                        <div class="flex pl-10 mt-2">
-                            <div>
-                                <img src="/img/img_21.png" class="w-6 h-5">
-                            </div>
-                            <p class="ml-2 text-gray-600">
-                                2 answer
-                            </p>
-                        </div>
-                    </div>
+                    {{--                    <div class="relative">--}}
+{{--                        <input type="text" placeholder="Your opinion" class="border border-gray-300 rounded-xl px-6 py-2 w-full">--}}
+{{--                        <div class="grid grid-cols-12">--}}
+{{--                            <div class="col-span-11"></div>--}}
+{{--                            <div>--}}
+{{--                                <div class=" absolute -mt-8 md:ml-14">--}}
+{{--                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">--}}
+{{--                                        <path d="M14.828 14.828C14.0779 15.5779 13.0607 15.9991 12 15.9991C10.9393 15.9991 9.92211 15.5779 9.172 14.828H14.828ZM9 10H9.01H9ZM15 10H15.01H15ZM21 12C21 13.1819 20.7672 14.3522 20.3149 15.4442C19.8626 16.5361 19.1997 17.5282 18.364 18.364C17.5282 19.1997 16.5361 19.8626 15.4442 20.3149C14.3522 20.7672 13.1819 21 12 21C10.8181 21 9.64778 20.7672 8.55585 20.3149C7.46392 19.8626 6.47177 19.1997 5.63604 18.364C4.80031 17.5282 4.13738 16.5361 3.68508 15.4442C3.23279 14.3522 3 13.1819 3 12C3 9.61305 3.94821 7.32387 5.63604 5.63604C7.32387 3.94821 9.61305 3 12 3C14.3869 3 16.6761 3.94821 18.364 5.63604C20.0518 7.32387 21 9.61305 21 12Z" stroke="#9A9494" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>--}}
+{{--                                    </svg>--}}
+
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="border-dashed border-b-2 my-4"></div>--}}
+{{--                    <div class="pl-4 ">--}}
+{{--                        <div class="flex w-full">--}}
+{{--                            <p class="border rounded-full bg-gray-300 float-left w-10 h-10 px-3 pt-2 text-xl font-bold text-gray-600 mr-2">T</p>--}}
+{{--                            <div class="pt-2">--}}
+{{--                                <p class="font-bold text-lg text-gray-600 float-left pr-4">Tony</p>--}}
+{{--                                <p class="text-gray-600 pt-1">Clues from a propaganda photo reveal details about North Korea’s </p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="mt-4 ml-10 text-gray-600 flex">--}}
+{{--                            <div class="">--}}
+{{--                                <svg width="31" height="28" viewBox="0 0 31 28" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">--}}
+{{--                                    <rect width="31" height="28" fill="url(#pattern0)"/>--}}
+{{--                                    <defs>--}}
+{{--                                        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">--}}
+{{--                                            <use xlink:href="#image0_37_238" transform="scale(0.0322581 0.0357143)"/>--}}
+{{--                                        </pattern>--}}
+{{--                                        <image id="image0_37_238" width="31" height="28" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAcCAYAAACZOmSXAAAABHNCSVQICAgIfAhkiAAAABl0RVh0U29mdHdhcmUAZ25vbWUtc2NyZWVuc2hvdO8Dvz4AAAEvSURBVEiJ7datkoMwFIbhl50VqcRGFolFEoms5RpySc0tIJFwDUhk44psZGRWtdPdgZ2ywNbwSeDkyd+cIQohBN6Uj3fBO75KLpcLzrlZNZ9rwcYYAMqyJMuyl+pWWbm1FoA8z6mq6uUdWIx777HWcjweKYoCgNvttj3uvccYw/V6RSnFMAyz6med+X1wKSXDMGCMIYSA1hopJXVdAxBF0eMohBBIKZfj98G11tR1jRACrTVxHAPQ9z0A5/P5W93pdEIptQz/mTiOH7D3nrIsRyfc9/36+HMOhwNJkow+n8qmHc45h7WWNE3/H2+aBiHEZNPZDHfO0XUdSqnJrd8Mv686z/PJbxZdOOccbduOvuu6jqIofr1wf8azLKOqqkn8ud1OJdp/o3Z8x3d8y3wBwgh4NiplcYEAAAAASUVORK5CYII="/>--}}
+{{--                                    </defs>--}}
+{{--                                </svg>--}}
+{{--                            </div>--}}
+{{--                            <p class="">15</p>--}}
+{{--                            <a class=" mx-10">Reply</a>--}}
+{{--                            <a>Share</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="pl-4 ">--}}
+{{--                        <div class="flex w-full">--}}
+{{--                            <p class="border rounded-full bg-gray-300 float-left w-10 h-10 px-3 pt-2 text-xl font-bold text-gray-600 mr-2">T</p>--}}
+{{--                            <div class="pt-2">--}}
+{{--                                <p class="font-bold text-lg text-gray-600 float-left pr-4">Tony</p>--}}
+{{--                                <p class="text-gray-600 pt-1">Clues from a propaganda photo reveal details about North Korea’s </p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="mt-4 ml-10 text-gray-600 flex">--}}
+{{--                            <div class="">--}}
+{{--                                <svg width="31" height="28" viewBox="0 0 31 28" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">--}}
+{{--                                    <rect width="31" height="28" fill="url(#pattern0)"/>--}}
+{{--                                    <defs>--}}
+{{--                                        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">--}}
+{{--                                            <use xlink:href="#image0_37_238" transform="scale(0.0322581 0.0357143)"/>--}}
+{{--                                        </pattern>--}}
+{{--                                        <image id="image0_37_238" width="31" height="28" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAcCAYAAACZOmSXAAAABHNCSVQICAgIfAhkiAAAABl0RVh0U29mdHdhcmUAZ25vbWUtc2NyZWVuc2hvdO8Dvz4AAAEvSURBVEiJ7datkoMwFIbhl50VqcRGFolFEoms5RpySc0tIJFwDUhk44psZGRWtdPdgZ2ywNbwSeDkyd+cIQohBN6Uj3fBO75KLpcLzrlZNZ9rwcYYAMqyJMuyl+pWWbm1FoA8z6mq6uUdWIx777HWcjweKYoCgNvttj3uvccYw/V6RSnFMAyz6med+X1wKSXDMGCMIYSA1hopJXVdAxBF0eMohBBIKZfj98G11tR1jRACrTVxHAPQ9z0A5/P5W93pdEIptQz/mTiOH7D3nrIsRyfc9/36+HMOhwNJkow+n8qmHc45h7WWNE3/H2+aBiHEZNPZDHfO0XUdSqnJrd8Mv686z/PJbxZdOOccbduOvuu6jqIofr1wf8azLKOqqkn8ud1OJdp/o3Z8x3d8y3wBwgh4NiplcYEAAAAASUVORK5CYII="/>--}}
+{{--                                    </defs>--}}
+{{--                                </svg>--}}
+{{--                            </div>--}}
+{{--                            <p class="">15</p>--}}
+{{--                            <a class=" mx-10">Reply</a>--}}
+{{--                            <a>Share</a>--}}
+{{--                        </div>--}}
+{{--                        <div class="flex pl-10 mt-2">--}}
+{{--                            <div>--}}
+{{--                                <img src="/img/img_21.png" class="w-6 h-5">--}}
+{{--                            </div>--}}
+{{--                            <p class="ml-2 text-gray-600">--}}
+{{--                                2 answer--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
             </div>
 

@@ -59,7 +59,7 @@ class ConsoleObserver extends SpatieCrawlObserver
         // image
 //        $img = $crawler->filter("#dark_theme > section.section.page-detail.top-detail > div > div.sidebar-1 > article > figure > div.fig-picture > picture > img");
 //        $img = $img->attr('data-src');
-        $image = "";
+        $image = "https://i1-vnexpress.vnecdn.net/2022/09/09/Theresa-May-meets-Queen-Elizabeth.jpg?w=220&h=132&q=100&dpr=1&fit=crop&s=B4rHwDkV2GxLUGH1nEx9Cg";
         $img = $crawler->filter("#dark_theme > section.section.page-detail.top-detail > div > div.sidebar-1 > article > figure > div.fig-picture > picture > img")->each(function ($node) {
             return $node->attr('data-src');
         });

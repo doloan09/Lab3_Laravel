@@ -17,7 +17,8 @@
         "spatie/crawler": "^7.1",
         "symfony/dom-crawler": "^6.1",
         "uocnv/laravel-model-expires": "*",
-        "uocnv/spatie-crawler-toolkit-for-laravel": "*"
+        "uocnv/spatie-crawler-toolkit-for-laravel": "*",
+        "doloan09/package_laravel_comment": "dev-master"
     },
     "require-dev": {
         "backpack/generators": "^3.1",
@@ -66,6 +67,12 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:doloan09/package_laravel_comment.git"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }

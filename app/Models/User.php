@@ -11,12 +11,13 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Spatie\Permission\Traits\HasRoles;
+use Doloan09\Comments\Commenter;
 
 class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
     use CrudTrait;
     use HasApiTokens, HasFactory, Notifiable;
-    use HasRoles;
+    use HasRoles, Commenter;
 
     /**
      * The attributes that are mass assignable.

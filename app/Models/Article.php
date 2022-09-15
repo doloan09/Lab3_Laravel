@@ -5,10 +5,12 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Doloan09\Comments\Commentable;
+
 
 class Article extends Model
 {
-    use CrudTrait;
+    use CrudTrait, Commentable;
 
     /*
     |--------------------------------------------------------------------------

@@ -45,7 +45,7 @@ class AuthController extends Controller
 
         $req = $request->only('email', 'password');
         if (Auth::attempt($req)){
-            return redirect()->route('auth-admin.list-user');
+            return redirect()->route('home');
         }
 
         return redirect()->route('login.request')->with('message', 'Login detail are not found!');
@@ -55,19 +55,18 @@ class AuthController extends Controller
     {
         $request->validated();
 
-        $user = User::create([
+        $user = User::insert([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'is_admin' => '0'
-        ]);
-
-        Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password
+            'is_admin'=>'0',
         ]);
 
         event(new Registered($user));
+
+        // login
+        $req = $request->only('email', 'password');
+        Auth::attempt($req);
 
         return redirect()->route('home')->with('message', 'Bạn đã đăng ký tài khoản thành công! Vui lòng kiểm tra email để xác thực tài khoản của bạn.');
     }
