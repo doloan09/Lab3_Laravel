@@ -1,11 +1,10 @@
 @inject('markdown', 'Parsedown')
 @php
-        // TODO: There should be a better place for this.
-        $markdown->setSafeMode(true);
+    // TODO: There should be a better place for this.
+    $markdown->setSafeMode(true);
 @endphp
-{{--{{ dd($comment['id']) }}--}}
 
-<div id="comment-{{ $comment->getKey() }}" class="mt-6">
+<div id="comment-{{ $comment->getKey() }}" class="border-l-2 border-red-500">
     <div class="grid grid-cols-12">
         <img class="col-span-2 md:col-span-1 rounded-full text-center h-11 w-11 md:ml-6" src="https://thechatvietnam.com/storage/users/default.png" alt="{{ $comment->commenter->name ?? $comment->guest_name }} Avatar">
         <div class="media-body col-span-10 md:col-span-11">
@@ -15,9 +14,6 @@
             </div>
 
             <div class="ml-4">
-                @can('reply-to-comment', $comment)
-                    <button data-toggle="modal" onclick="toggleModal('like-modal-{{ $comment->getKey() }}')" data-target="#like-modal-{{ $comment->getKey() }}" class="border-2 border-blue-500 py-1 px-3 rounded-3xl text-blue-600 mx-2  hover:text-white hover:bg-blue-600">@lang('comments::comments.like')</button>
-                @endcan
                 @can('reply-to-comment', $comment)
                     <button data-toggle="modal" onclick="toggleModal('reply-modal-{{ $comment->getKey() }}')" data-target="#reply-modal-{{ $comment->getKey() }}" class="border-2 border-blue-500 py-1 px-3 rounded-3xl text-blue-600 mx-2  hover:text-white hover:bg-blue-600">@lang('comments::comments.reply')</button>
                 @endcan
@@ -78,27 +74,27 @@
 
             <br />{{-- Margin bottom --}}
 
-            <?php
+                <?php
                 if (!isset($indentationLevel)) {
                     $indentationLevel = 1;
                 } else {
                     $indentationLevel++;
                 }
-            ?>
-
-            {{-- Recursion for children --}}
-            @if($grouped_comments->has($comment->getKey()) && $indentationLevel <= $maxIndentationLevel)
-                {{-- TODO: Don't repeat code. Extract to a new file and include it. --}}
-                @foreach($grouped_comments[$comment->getKey()] as $child)
-                    @include('comments::_comment_child', [
-                        'comment' => $child,
-                        'grouped_comments' => $grouped_comments
-                    ])
-                @endforeach
-            @endif
+                ?>
         </div>
     </div>
 </div>
+
+{{-- Recursion for children --}}
+@if($grouped_comments->has($comment->getKey()) && $indentationLevel <= $maxIndentationLevel)
+    {{-- TODO: Don't repeat code. Extract to a new file and include it. --}}
+    @foreach($grouped_comments[$comment->getKey()] as $child)
+        @include('comments::_comment_child', [
+            'comment' => $child,
+            'grouped_comments' => $grouped_comments
+        ])
+    @endforeach
+@endif
 
 @push('scripts')
     <script type="text/javascript">
