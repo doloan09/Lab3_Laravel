@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use App\Exceptions\Handler;
 use App\Models\User;

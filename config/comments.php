@@ -18,6 +18,7 @@ return [
         'delete-comment' => 'Doloan09\Comments\CommentPolicy@delete',
         'edit-comment' => 'Doloan09\Comments\CommentPolicy@update',
         'reply-to-comment' => 'Doloan09\Comments\CommentPolicy@reply',
+        'like-comment' => 'Doloan09\Comments\CommentPolicy@like',
     ],
 
     /**
@@ -60,7 +61,7 @@ return [
      */
     'guest_commenting' => false,
 
-	/**
+    /**
      * Set this option to `true` to enable soft deleting of comments.
      *
      * Comments will be soft deleted using laravels "softDeletes" trait.

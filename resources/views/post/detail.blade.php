@@ -5,8 +5,7 @@
 @endsection
 
 @section('content')
-
-    <div class="md:mx-16 mt-10 mx-4 border-b-2 font-roboto">
+<div class="md:mx-16 mt-10 mx-4 border-b-2 font-roboto relative">
     <div class="my-10 flex flex-wrap">
         <div class=" border-black border-l-4 pl-4 cursor-pointer">
             <a href="/home">Home ></a>
@@ -101,8 +100,10 @@
                 </div>
                 <div class="border rounded-xl border-gray-300 py-4 px-6 mt-10 pb-10">
                     <div class="text-gray-600 text-2xl mb-8">
-                        <p class="border-b-2 w-1/12">Bình luận</p>
+                        <p class="border-b-2 md:w-1/12">Bình luận</p>
                     </div>
+
+{{--                    @include('comments::components.comments', ['model' => $lstArticles])--}}
                     @comments(['model' => $lstArticles])
 
                     {{--                    <div class="relative">--}}

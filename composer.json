@@ -18,7 +18,7 @@
         "symfony/dom-crawler": "^6.1",
         "uocnv/laravel-model-expires": "*",
         "uocnv/spatie-crawler-toolkit-for-laravel": "*",
-        "doloan09/package_laravel_comment": "dev-master"
+        "doloan09/package_laravel_comment": "@dev"
     },
     "require-dev": {
         "backpack/generators": "^3.1",
@@ -69,8 +69,11 @@
     },
     "repositories": [
         {
-            "type": "vcs",
-            "url": "git@github.com:doloan09/package_laravel_comment.git"
+            "type": "path",
+            "url": "/var/www/LaravelTailwind/Package_Comment_Laravel/comments",
+            "options": {
+                "symlink": true
+            }
         }
     ],
     "minimum-stability": "dev",
