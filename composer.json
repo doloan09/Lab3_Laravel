@@ -9,6 +9,7 @@
         "backpack/crud": "^5.3",
         "backpack/logmanager": "^4.0",
         "backpack/permissionmanager": "^6.0",
+        "doloan09/package_laravel_comment": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^2.14.1",
@@ -17,8 +18,7 @@
         "spatie/crawler": "^7.1",
         "symfony/dom-crawler": "^6.1",
         "uocnv/laravel-model-expires": "*",
-        "uocnv/spatie-crawler-toolkit-for-laravel": "*",
-        "doloan09/package_laravel_comment": "@dev"
+        "uocnv/spatie-crawler-toolkit-for-laravel": "*"
     },
     "require-dev": {
         "backpack/generators": "^3.1",
@@ -67,15 +67,6 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "/var/www/LaravelTailwind/Package_Comment_Laravel/comments",
-            "options": {
-                "symlink": true
-            }
-        }
-    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }

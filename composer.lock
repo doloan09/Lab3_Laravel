@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d28f0cad48f78729a36e046d7a8973b",
+    "content-hash": "64d85cc586b92f1990c07cee931f219a",
     "packages": [
         {
             "name": "backpack/crud",
@@ -1077,11 +1077,17 @@
         },
         {
             "name": "doloan09/package_laravel_comment",
-            "version": "dev-master",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doloan09/package_laravel_comment.git",
+                "reference": "804569626ba4ee4d425cf7f648a6910350d2adbc"
+            },
             "dist": {
-                "type": "path",
-                "url": "/var/www/LaravelTailwind/Package_Comment_Laravel/comments",
-                "reference": "bd41bdc6134258d0e66ba9b5816fd430c6cb787d"
+                "type": "zip",
+                "url": "https://api.github.com/repos/doloan09/package_laravel_comment/zipball/804569626ba4ee4d425cf7f648a6910350d2adbc",
+                "reference": "804569626ba4ee4d425cf7f648a6910350d2adbc",
+                "shasum": ""
             },
             "require": {
                 "erusev/parsedown": "^1.7",
@@ -1107,6 +1113,7 @@
                     "Doloan09\\Comments\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1122,10 +1129,11 @@
                 "doloan09",
                 "package_laravel_comment"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": false
-            }
+            "support": {
+                "issues": "https://github.com/doloan09/package_laravel_comment/issues",
+                "source": "https://github.com/doloan09/package_laravel_comment/tree/v1.0"
+            },
+            "time": "2022-09-19T04:46:17+00:00"
         },
         {
             "name": "dragonmantank/cron-expression",
@@ -9912,9 +9920,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "doloan09/package_laravel_comment": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
