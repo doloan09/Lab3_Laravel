@@ -30,11 +30,11 @@ class Category extends Model
     */
 
     public function showCategory(){
-        return Category::select('*')->get();
+        return Category::all();
     }
 
-    public function showName($slug){
-        $item = Category::select('*')->where('slug', $slug)->first();
+    public function showName($id){
+        $item = Category::where('id', $id)->firstOrFail();
         return $item;
     }
     /*

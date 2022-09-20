@@ -67,7 +67,7 @@ class UserController extends Controller
             'is_admin' => '0'
         ]);
 
-        return redirect()->route('auth-admin.list-user');
+        return redirect()->route('auth.admin.users.index');
     }
 
     /**
@@ -110,10 +110,10 @@ class UserController extends Controller
         ]);
 
         if ($request->name == "") {
-            return redirect()->route('auth-admin.edit-user', ['user' => $user]);
+            return redirect()->route('auth.admin.users.edit', ['user' => $user]);
         } else {
             $user->update(['name' => $request->name]);
-            return redirect()->route('auth-admin.list-user');
+            return redirect()->route('auth.admin.users.index');
         }
     }
 
@@ -128,7 +128,7 @@ class UserController extends Controller
         if ($this->checkAdmin()) {
 
             $user->delete();
-            return redirect()->route('auth-admin.list-user');
+            return redirect()->route('auth.admin.users.index');
         }
         return abort(403, 'Unauthorized action.');
     }

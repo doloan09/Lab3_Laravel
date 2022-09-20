@@ -4,9 +4,10 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Auth\ResetPassController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,9 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', [\App\Http\Controllers\CustomCrawlerController::class, 'fetchContent']);
 ///Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/home', [PageController::class, 'index'])->name('home');
-Route::get('/list-news/{name}', [PostController::class, 'listNews'])->name('list-news');
-Route::get('/list-news/{name}/{item}', [PostController::class, 'show'])->name('lost-news.item');
-//Route::get('/list-news/{name}/{item}', [PostController::class, 'show'])->name('lost-news.item')->middleware('auth', 'verify');
+Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show'); // danh sach bai viet theo theo loai
+Route::get('/articles/{slug}', [ArticlesController::class, 'show'])->name('articles.show'); // chi tiet 1 bai viet
+//Route::get('/articles/{slug}', [ArticlesController::class, 'show'])->name('articles.show')->middleware('auth', 'verify');
 
 //Login - logout (User)
 Route::get('/login', [AuthController::class, 'loginRequest'])->name('login.request'); // hien thi view login
@@ -58,11 +59,11 @@ Route::group([
 //    'middleware' => ['auth', 'verified']
     'middleware' => ['auth']
 ], function () {
-    Route::get('/list-user', [UserController::class, 'index'])->name('auth-admin.list-user'); // view list user
-    Route::get('/register', [UserController::class, 'create'])->name('auth-admin.register.request'); // view create user
-    Route::post('/register', [UserController::class, 'store'])->name('auth-admin.register'); //insert user
-    Route::get('/edit-user/{user}', [UserController::class, 'edit'])->name('auth-admin.edit-user'); // view update
-    Route::post('/update-user/{user}', [UserController::class, 'update'])->name('auth-admin.update-user'); //update user
-    Route::delete('/delete-user/{user}', [UserController::class, 'destroy'])->name('auth-admin.delete-user'); //delete user
+    Route::get('/users', [UserController::class, 'index'])->name('auth.admin.users.index'); // view list user
+    Route::get('/users/create', [UserController::class, 'create'])->name('auth.admin.users.create'); // view create user
+    Route::post('/users', [UserController::class, 'store'])->name('auth.admin.users.store'); //insert user
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('auth.admin.users.edit'); // view update
+    Route::post('/users/{user}', [UserController::class, 'update'])->name('auth.admin.users.update'); //update user
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('auth.admin.users.destroy'); //delete user
 });
 

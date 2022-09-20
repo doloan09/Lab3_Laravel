@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('title')
-    {{ $lstArticles->name }}
+    {{ $article->name }}
 @endsection
 
 @section('content')
@@ -11,17 +11,16 @@
             <a href="/home">Home ></a>
         </div>
         <div class=" px-4 cursor-pointer">
-            <a href="/list-news/{{ $name }}">{{ $Cate->name }} > </a>
+            <a href="/categories/{{ $slug_category }}">{{ $Cate->name }} > </a>
         </div>
-        <div class="text-blue-700 cursor-pointer"> {{ $lstArticles->tittle }}</div>
+        <div class="text-blue-700 cursor-pointer"> {{ $article->tittle }}</div>
     </div>
     <div class="grid grid-cols-4 gap-6 relative">
         <div class="col-span-4 md:col-span-3">
-{{--            <div class="font-bold text-gray-600 border-gray-300 text-center bg-[#FBFF22] w-5/12 md:w-2/12 py-2  text-lg">{{ strtoupper($name)}}</div>--}}
             <div
                 class="bg-gray-300 text-black font-bold text-left px-4 py-2 text-xl md:text-2xl">{{$Cate->name }}
             </div>
-            <div class="font-bold text-black text-3xl md:text-4xl mt-6">{{$lstArticles->tittle}}</div>
+            <div class="font-bold text-black text-3xl md:text-4xl mt-6">{{$article->tittle}}</div>
             <div class="mt-4 md:mt-6 text-gray-400 grid grid-cols-6">
                 <div class="col-span-3 md:col-span-1">
                     <div class="float-left md:mt-1 mr-2">
@@ -29,7 +28,7 @@
                             <path d="M9 6V9L11.25 11.25L9 6ZM15.75 9C15.75 9.88642 15.5754 10.7642 15.2362 11.5831C14.897 12.4021 14.3998 13.1462 13.773 13.773C13.1462 14.3998 12.4021 14.897 11.5831 15.2362C10.7642 15.5754 9.88642 15.75 9 15.75C8.11358 15.75 7.23583 15.5754 6.41689 15.2362C5.59794 14.897 4.85382 14.3998 4.22703 13.773C3.60023 13.1462 3.10303 12.4021 2.76381 11.5831C2.42459 10.7642 2.25 9.88642 2.25 9C2.25 7.20979 2.96116 5.4929 4.22703 4.22703C5.4929 2.96116 7.20979 2.25 9 2.25C10.7902 2.25 12.5071 2.96116 13.773 4.22703C15.0388 5.4929 15.75 7.20979 15.75 9Z" stroke="#434343" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
-                    <p class="text-sm md:text-lg">{{ $lstArticles->date  }}</p>
+                    <p class="text-sm md:text-lg">{{ $article->date  }}</p>
                 </div>
                 <div class="col-span-4 hidden md:block"></div>
                 <div class="col-span-3 md:col-span-1 grid grid-cols-2">
@@ -56,13 +55,13 @@
 {{--                <img src="{{ $lstArticles->image }}" class="w-full h-3/5">--}}
 {{--            </div>--}}
             <div class="mb-16 mt-4">
-                <div class="text-2xl mb-6">{!! $lstArticles->description !!}</div>
+                <div class="text-2xl mb-6">{!! $article->description !!}</div>
 
-                {!! $lstArticles->contents !!}
+                {!! $article->contents !!}
 
                 <div class="grid grid-cols-12 md:grid-cols-12 mt-10">
                     <div class="col-span-1 px-2 py-4 md:p-4 border md:w-3/6">
-                        <a href="/list-news/{{$lstArticles->slug}}">
+                        <a href="/list-news/{{$article->slug}}">
                             <svg width="20" height="11" viewBox="0 0 20 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 5.5189H19M5 9.71858L1 5.5189L5 9.71858ZM1 5.5189L5 1.31921L1 5.5189Z" stroke="#434343" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -104,81 +103,8 @@
                     </div>
 
 {{--                    @include('comments::components.comments', ['model' => $lstArticles])--}}
-                    @comments(['model' => $lstArticles])
+                    @comments(['model' => $article])
 
-                    {{--                    <div class="relative">--}}
-{{--                        <input type="text" placeholder="Your opinion" class="border border-gray-300 rounded-xl px-6 py-2 w-full">--}}
-{{--                        <div class="grid grid-cols-12">--}}
-{{--                            <div class="col-span-11"></div>--}}
-{{--                            <div>--}}
-{{--                                <div class=" absolute -mt-8 md:ml-14">--}}
-{{--                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">--}}
-{{--                                        <path d="M14.828 14.828C14.0779 15.5779 13.0607 15.9991 12 15.9991C10.9393 15.9991 9.92211 15.5779 9.172 14.828H14.828ZM9 10H9.01H9ZM15 10H15.01H15ZM21 12C21 13.1819 20.7672 14.3522 20.3149 15.4442C19.8626 16.5361 19.1997 17.5282 18.364 18.364C17.5282 19.1997 16.5361 19.8626 15.4442 20.3149C14.3522 20.7672 13.1819 21 12 21C10.8181 21 9.64778 20.7672 8.55585 20.3149C7.46392 19.8626 6.47177 19.1997 5.63604 18.364C4.80031 17.5282 4.13738 16.5361 3.68508 15.4442C3.23279 14.3522 3 13.1819 3 12C3 9.61305 3.94821 7.32387 5.63604 5.63604C7.32387 3.94821 9.61305 3 12 3C14.3869 3 16.6761 3.94821 18.364 5.63604C20.0518 7.32387 21 9.61305 21 12Z" stroke="#9A9494" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>--}}
-{{--                                    </svg>--}}
-
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="border-dashed border-b-2 my-4"></div>--}}
-{{--                    <div class="pl-4 ">--}}
-{{--                        <div class="flex w-full">--}}
-{{--                            <p class="border rounded-full bg-gray-300 float-left w-10 h-10 px-3 pt-2 text-xl font-bold text-gray-600 mr-2">T</p>--}}
-{{--                            <div class="pt-2">--}}
-{{--                                <p class="font-bold text-lg text-gray-600 float-left pr-4">Tony</p>--}}
-{{--                                <p class="text-gray-600 pt-1">Clues from a propaganda photo reveal details about North Korea’s </p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="mt-4 ml-10 text-gray-600 flex">--}}
-{{--                            <div class="">--}}
-{{--                                <svg width="31" height="28" viewBox="0 0 31 28" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">--}}
-{{--                                    <rect width="31" height="28" fill="url(#pattern0)"/>--}}
-{{--                                    <defs>--}}
-{{--                                        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">--}}
-{{--                                            <use xlink:href="#image0_37_238" transform="scale(0.0322581 0.0357143)"/>--}}
-{{--                                        </pattern>--}}
-{{--                                        <image id="image0_37_238" width="31" height="28" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAcCAYAAACZOmSXAAAABHNCSVQICAgIfAhkiAAAABl0RVh0U29mdHdhcmUAZ25vbWUtc2NyZWVuc2hvdO8Dvz4AAAEvSURBVEiJ7datkoMwFIbhl50VqcRGFolFEoms5RpySc0tIJFwDUhk44psZGRWtdPdgZ2ywNbwSeDkyd+cIQohBN6Uj3fBO75KLpcLzrlZNZ9rwcYYAMqyJMuyl+pWWbm1FoA8z6mq6uUdWIx777HWcjweKYoCgNvttj3uvccYw/V6RSnFMAyz6med+X1wKSXDMGCMIYSA1hopJXVdAxBF0eMohBBIKZfj98G11tR1jRACrTVxHAPQ9z0A5/P5W93pdEIptQz/mTiOH7D3nrIsRyfc9/36+HMOhwNJkow+n8qmHc45h7WWNE3/H2+aBiHEZNPZDHfO0XUdSqnJrd8Mv686z/PJbxZdOOccbduOvuu6jqIofr1wf8azLKOqqkn8ud1OJdp/o3Z8x3d8y3wBwgh4NiplcYEAAAAASUVORK5CYII="/>--}}
-{{--                                    </defs>--}}
-{{--                                </svg>--}}
-{{--                            </div>--}}
-{{--                            <p class="">15</p>--}}
-{{--                            <a class=" mx-10">Reply</a>--}}
-{{--                            <a>Share</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="pl-4 ">--}}
-{{--                        <div class="flex w-full">--}}
-{{--                            <p class="border rounded-full bg-gray-300 float-left w-10 h-10 px-3 pt-2 text-xl font-bold text-gray-600 mr-2">T</p>--}}
-{{--                            <div class="pt-2">--}}
-{{--                                <p class="font-bold text-lg text-gray-600 float-left pr-4">Tony</p>--}}
-{{--                                <p class="text-gray-600 pt-1">Clues from a propaganda photo reveal details about North Korea’s </p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="mt-4 ml-10 text-gray-600 flex">--}}
-{{--                            <div class="">--}}
-{{--                                <svg width="31" height="28" viewBox="0 0 31 28" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">--}}
-{{--                                    <rect width="31" height="28" fill="url(#pattern0)"/>--}}
-{{--                                    <defs>--}}
-{{--                                        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">--}}
-{{--                                            <use xlink:href="#image0_37_238" transform="scale(0.0322581 0.0357143)"/>--}}
-{{--                                        </pattern>--}}
-{{--                                        <image id="image0_37_238" width="31" height="28" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAcCAYAAACZOmSXAAAABHNCSVQICAgIfAhkiAAAABl0RVh0U29mdHdhcmUAZ25vbWUtc2NyZWVuc2hvdO8Dvz4AAAEvSURBVEiJ7datkoMwFIbhl50VqcRGFolFEoms5RpySc0tIJFwDUhk44psZGRWtdPdgZ2ywNbwSeDkyd+cIQohBN6Uj3fBO75KLpcLzrlZNZ9rwcYYAMqyJMuyl+pWWbm1FoA8z6mq6uUdWIx777HWcjweKYoCgNvttj3uvccYw/V6RSnFMAyz6med+X1wKSXDMGCMIYSA1hopJXVdAxBF0eMohBBIKZfj98G11tR1jRACrTVxHAPQ9z0A5/P5W93pdEIptQz/mTiOH7D3nrIsRyfc9/36+HMOhwNJkow+n8qmHc45h7WWNE3/H2+aBiHEZNPZDHfO0XUdSqnJrd8Mv686z/PJbxZdOOccbduOvuu6jqIofr1wf8azLKOqqkn8ud1OJdp/o3Z8x3d8y3wBwgh4NiplcYEAAAAASUVORK5CYII="/>--}}
-{{--                                    </defs>--}}
-{{--                                </svg>--}}
-{{--                            </div>--}}
-{{--                            <p class="">15</p>--}}
-{{--                            <a class=" mx-10">Reply</a>--}}
-{{--                            <a>Share</a>--}}
-{{--                        </div>--}}
-{{--                        <div class="flex pl-10 mt-2">--}}
-{{--                            <div>--}}
-{{--                                <img src="/img/img_21.png" class="w-6 h-5">--}}
-{{--                            </div>--}}
-{{--                            <p class="ml-2 text-gray-600">--}}
-{{--                                2 answer--}}
-{{--                            </p>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                 </div>
             </div>
 
@@ -188,9 +114,9 @@
                 <div class="font-bold text-gray-600 border-gray-300 text-center bg-gray-300 w-3/12 py-2">CATEGORY</div>
                 <div class="border border-gray-300 mt-8 px-8 py-6 rounded-xl overflow-y-auto h-80">
                     @foreach($listCategory as $ls)
-                        @if($ls->name != $name)
+                        @if($ls->name != $slug_category)
                             <div class="border-b-2 border-dashed mb-4 pb-2 pt-4 text-xl">
-                                <a class="text-black cursor-pointer hover:text-blue-700" href="/list-news/{{$ls->slug}}">{{$ls->name}}</a>
+                                <a class="text-black cursor-pointer hover:text-blue-700" href="/categories/{{$ls->slug}}">{{$ls->name}}</a>
                             </div>
                         @endif
                     @endforeach
@@ -204,22 +130,28 @@
 
             <div class="md:mt-10">
                 <div class="font-bold text-gray-600 border-gray-300 text-center bg-gray-300 w-3/12 py-2 mb-6">NEWS</div>
-                @for($i = count($listArt)-1; $i > count($listArt) - 5; $i--)
+                @php
+                    $listArticle = $listArt->take(5)->filter(function ($value, $key) use ($article){
+                        return $value->slug != $article->slug;
+                    });
+                @endphp
+
+                @foreach($listArticle as $item)
                     <div class="relative pb-4">
-                        <img src="{{ $listArt[$i]->image }}" class="w-full rounded-xl">
+                        <img src="{{ $item->image }}" class="w-full rounded-xl">
                         <div
                             class="absolute -mt-32 text-white ml-2 md:w-5/6 md:ml-6">
                             <div class="">
                                 <div class="">
                                     <div class="font-bold text-xl">
-                                        <a href="/list-news/{{$name}}/{{ $listArt[$i]->slug }}">{{ $listArt[$i]->tittle }}</a>
+                                        <a href="/articles/{{ $item->slug }}">{{ $item->tittle }}</a>
                                     </div>
                                     <p>2:30 | By Telegraph</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endfor
+                @endforeach
             </div>
             <div class="mt-6">
                 <div CLASS="font-bold text-gray-600 border-gray-300 text-center bg-gray-300 w-4/12 py-2 text-lg md:text-lg">VIEW MORE</div>
@@ -245,11 +177,11 @@
     </div>
 
     <div class="gap-4 pb-4 flex overflow-x-auto border-b-2 my-10">
-        @foreach($listArt as $ls)
+        @foreach($listArticle as $ls)
             <div class=" flex-shrink-0 border border-gray-300 rounded-xl p-4 md:w-1/4 w-full">
                 <img src="{{ $ls->image }}" class="rounded-xl w-full h-56">
                 <div class="bg-white font-bold ml-6 text-gray-500 text-xl w-5/6 font-roboto mt-6 ">
-                    <a href="/list-news/{{$name}}/{{ $ls->slug }}">{{ $ls->tittle }}</a>
+                    <a href="/articles/{{ $ls->slug }}">{{ $ls->tittle }}</a>
                 </div>
                 <div class="mt-4 md:mt-6 text-gray-400 grid grid-cols-2 md:grid-cols-3">
                     <div class="col-span-1 flex">

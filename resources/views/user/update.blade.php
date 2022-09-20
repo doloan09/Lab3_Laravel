@@ -7,7 +7,7 @@
         <div class="hidden md:block col-span-1"></div>
         <div class="md:col-span-1 col-span-3">
             <h1 class="text-center font-bold text-3xl">Update User</h1>
-            <form action="{{ route('auth-admin.update-user', ['user' => $user]) }}" method="POST">
+            <form action="{{ route('auth.admin.users.update', ['user' => $user]) }}" method="POST">
                 @csrf
                 <div class="mt-10">
                     <p class="pr-3">UserName:</p>

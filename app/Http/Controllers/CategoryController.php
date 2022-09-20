@@ -7,7 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PostController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,20 +17,6 @@ class PostController extends Controller
     public function index()
     {
         //
-    }
-
-    public function listNews($slug){
-        $user = Auth::user();
-
-        $lstArticles = new Article();
-        $lstArticles = $lstArticles->showArticles($slug); // danh sach tat ca cac bai viet
-
-        $listCate = new Category();
-        $listCategory = $listCate->showCategory(); /// danh sach tat ca category
-        $Cate = $listCate->showName($slug); // lay ra ten cua 1 category thong qua slug
-
-//        dd($Cate);
-        return view('post.list_news', compact('listCategory', 'lstArticles','Cate', 'user', 'slug'));
     }
 
     /**
@@ -60,21 +46,19 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name, $item) // name=slug_category; item = slug_article
+    public function show($slug)
     {
         $user = Auth::user();
 
-        $lstArt = new Article();
-        $lstArticles = $lstArt->showItem($item); // lay ra chi tiet cua 1 bai viet
-        $listArt = $lstArt->showListArticles($name);
+        $lstArticles = new Article();
+        $lstArticles = $lstArticles->showArticles($slug); // danh sach tat ca cac bai viet
 
         $listCate = new Category();
-        $listCategory = $listCate->showCategory(); // danh sach category
-        $Cate = $listCate->showName($name);
+        $listCategory = $listCate->showCategory(); /// danh sach tat ca category
+        $Cate = $listCate->showName($lstArticles[0]->id_category); // lay ra ten cua 1 category thong qua id bai viet
 
-        return view('post.detail', compact('listCategory','item', 'user', 'lstArticles', 'name', 'Cate', 'listArt'));
+        return view('post.list_news', compact('listCategory', 'lstArticles','Cate', 'user', 'slug'));
     }
-
 
     /**
      * Show the form for editing the specified resource.
