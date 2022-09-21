@@ -9,7 +9,7 @@
     <div class="md:mx-16 mt-10 mx-4 border-b-2 font-roboto">
     <div class="my-10 flex">
         <div class=" border-black border-l-4 pl-4 cursor-pointer">
-            <a href="/home">Home ></a>
+            <a href="{{ route('home') }}">Home ></a>
         </div>
         <div class="text-blue-700 cursor-pointer px-4"> {{$Cate->name}}</div>
     </div>
@@ -47,7 +47,7 @@
                                 <img src="{{ $lst->image }}" class="mb-4 md:mb-0 w-full h-52">
                             </div>
                             <div class="col-span-2 font-roboto">
-                                <a href="/articles/{{ $lst->slug }}"
+                                <a href="{{ route('articles.show', $lst->slug) }}"
                                    class="font-medium text-lg md:text-2xl text-gray-700">{{$lst->tittle}}</a>
                                 <p class="hidden md:block mt-2 text-xl">{!! $lst->description !!}</p>
                                 <div class="mt-4 md:mt-20">
@@ -84,7 +84,7 @@
         function changeFunc() {
             var selectBox = document.getElementById("selectBox");
             var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-            window.location.href = "/list-news/" + selectedValue;
+            window.location.href = "/categories/" + selectedValue;
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>

@@ -8,10 +8,10 @@
 <div class="md:mx-16 mt-10 mx-4 border-b-2 font-roboto relative">
     <div class="my-10 flex flex-wrap">
         <div class=" border-black border-l-4 pl-4 cursor-pointer">
-            <a href="/home">Home ></a>
+            <a href="{{ route('home') }}">Home ></a>
         </div>
         <div class=" px-4 cursor-pointer">
-            <a href="/categories/{{ $slug_category }}">{{ $Cate->name }} > </a>
+            <a href="{{ route('categories.show', $Cate->slug) }}">{{ $Cate->name }} > </a>
         </div>
         <div class="text-blue-700 cursor-pointer"> {{ $article->tittle }}</div>
     </div>
@@ -61,7 +61,7 @@
 
                 <div class="grid grid-cols-12 md:grid-cols-12 mt-10">
                     <div class="col-span-1 px-2 py-4 md:p-4 border md:w-3/6">
-                        <a href="/list-news/{{$article->slug}}">
+                        <a href="{{ route('categories.show', $Cate->slug) }}">
                             <svg width="20" height="11" viewBox="0 0 20 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 5.5189H19M5 9.71858L1 5.5189L5 9.71858ZM1 5.5189L5 1.31921L1 5.5189Z" stroke="#434343" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -114,9 +114,9 @@
                 <div class="font-bold text-gray-600 border-gray-300 text-center bg-gray-300 w-3/12 py-2">CATEGORY</div>
                 <div class="border border-gray-300 mt-8 px-8 py-6 rounded-xl overflow-y-auto h-80">
                     @foreach($listCategory as $ls)
-                        @if($ls->name != $slug_category)
+                        @if($ls->slug != $Cate->slug)
                             <div class="border-b-2 border-dashed mb-4 pb-2 pt-4 text-xl">
-                                <a class="text-black cursor-pointer hover:text-blue-700" href="/categories/{{$ls->slug}}">{{$ls->name}}</a>
+                                <a class="text-black cursor-pointer hover:text-blue-700" href="{{ route('categories.show', $ls->slug) }}">{{$ls->name}}</a>
                             </div>
                         @endif
                     @endforeach
@@ -144,7 +144,7 @@
                             <div class="">
                                 <div class="">
                                     <div class="font-bold text-xl">
-                                        <a href="/articles/{{ $item->slug }}">{{ $item->tittle }}</a>
+                                        <a href="{{ route('articles.show', $item->slug) }}">{{ $item->tittle }}</a>
                                     </div>
                                     <p>2:30 | By Telegraph</p>
                                 </div>
@@ -181,7 +181,7 @@
             <div class=" flex-shrink-0 border border-gray-300 rounded-xl p-4 md:w-1/4 w-full">
                 <img src="{{ $ls->image }}" class="rounded-xl w-full h-56">
                 <div class="bg-white font-bold ml-6 text-gray-500 text-xl w-5/6 font-roboto mt-6 ">
-                    <a href="/articles/{{ $ls->slug }}">{{ $ls->tittle }}</a>
+                    <a href="{{ route('articles.show', $ls->slug) }}">{{ $ls->tittle }}</a>
                 </div>
                 <div class="mt-4 md:mt-6 text-gray-400 grid grid-cols-2 md:grid-cols-3">
                     <div class="col-span-1 flex">

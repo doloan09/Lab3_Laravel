@@ -4,7 +4,7 @@
         @foreach($listCategory as $ls)
             @if($ls->name != $Cate->name)
                 <div class="border-b-2 border-dashed mb-4 pb-2 pt-4 text-xl">
-                    <a class="text-black cursor-pointer hover:text-blue-700" href="/categories/{{ $ls->slug }}">{{$ls->name}}</a>
+                    <a class="text-black cursor-pointer hover:text-blue-700" href="{{ route('categories.show', $ls->slug) }}">{{$ls->name}}</a>
                 </div>
             @endif
         @endforeach
