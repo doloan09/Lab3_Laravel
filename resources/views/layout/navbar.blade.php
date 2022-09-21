@@ -11,7 +11,7 @@
                 <ul class="flex flex-wrap -mb-px">
                     @for ($i = 0; $i <= count($listCategory)-1; $i++)
                         <li class="">
-                            <a href="/categories/{{ $listCategory[$i]->slug }}" class="font-roboto inline-block p-2 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">{{ $listCategory[$i]->name }}</a>
+                            <a href="{{ route('categories.show', $listCategory[$i]->slug) }}" class="font-roboto inline-block p-2 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">{{ $listCategory[$i]->name }}</a>
                         </li>
                     @endfor
                 </ul>
