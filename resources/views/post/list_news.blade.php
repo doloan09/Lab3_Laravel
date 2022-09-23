@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('title')
-    {{$Cate->name}}
+    {{$Category->name}}
 @endsection
 
 @section('content')
@@ -11,13 +11,13 @@
         <div class=" border-black border-l-4 pl-4 cursor-pointer">
             <a href="{{ route('home') }}">Home ></a>
         </div>
-        <div class="text-blue-700 cursor-pointer px-4"> {{$Cate->name}}</div>
+        <div class="text-blue-700 cursor-pointer px-4"> {{$Category->name}}</div>
     </div>
 
     <div class="grid grid-cols-4 gap-6 relative">
         <div class="col-span-4 md:col-span-3">
             <div
-                class="bg-gray-300 text-black font-bold text-left px-4 py-2 text-xl md:text-2xl">{{ strtoupper($Cate->name)}}
+                class="bg-gray-300 text-black font-bold text-left px-4 py-2 text-xl md:text-2xl">{{ strtoupper($Category->name)}}
             </div>
             <div class="grid grid-cols-3 md:grid-cols-6 my-6 gap-4">
                 <div class="hidden md:block col-span-3"></div>
@@ -37,18 +37,18 @@
                 </select>
             </div>
 
-            @if(count($lstArticles) == 0)
+            @if(count($listArticles) == 0)
                 <div class="text-center font-bold text-2xl mt-24 text-red-600">Danh sách bài viết trống!</div>
             @else
                 <div class="border border-gray-300 rounded-xl pb-6 md:pb-10 mt-6 md:mt-12">
-                    @foreach($lstArticles as $lst)
+                    @foreach($listArticles as $lst)
                         <div class="md:grid md:grid-cols-3 md:gap-10 py-6 md:py-10 border-b-2 mx-2 md:mx-10">
                             <div class="col-span-1">
                                 <img src="{{ $lst->image }}" class="mb-4 md:mb-0 w-full h-52">
                             </div>
                             <div class="col-span-2 font-roboto">
                                 <a href="{{ route('articles.show', $lst->slug) }}"
-                                   class="font-medium text-lg md:text-2xl text-gray-700">{{$lst->tittle}}</a>
+                                   class="font-bold text-lg md:text-2xl text-gray-700">{{$lst->tittle}}</a>
                                 <p class="hidden md:block mt-2 text-xl">{!! $lst->description !!}</p>
                                 <div class="mt-4 md:mt-20">
                                     <div class="float-left mt-1 mr-2">
@@ -68,7 +68,7 @@
                 </div>
                 {{--        Pagination    --}}
                 <div class="mt-10 my-10">
-                    {{ $lstArticles->links('pagination::tailwind') }}
+                    {{ $listArticles->links('pagination::tailwind') }}
                 </div>
             @endif
 

@@ -11,14 +11,14 @@
             <a href="{{ route('home') }}">Home ></a>
         </div>
         <div class=" px-4 cursor-pointer">
-            <a href="{{ route('categories.show', $Cate->slug) }}">{{ $Cate->name }} > </a>
+            <a href="{{ route('categories.show', $Category->slug) }}">{{ $Category->name }} > </a>
         </div>
         <div class="text-blue-700 cursor-pointer"> {{ $article->tittle }}</div>
     </div>
     <div class="grid grid-cols-4 gap-6 relative">
         <div class="col-span-4 md:col-span-3">
             <div
-                class="bg-gray-300 text-black font-bold text-left px-4 py-2 text-xl md:text-2xl">{{$Cate->name }}
+                class="bg-gray-300 text-black font-bold text-left px-4 py-2 text-xl md:text-2xl">{{$Category->name }}
             </div>
             <div class="font-bold text-black text-3xl md:text-4xl mt-6">{{$article->tittle}}</div>
             <div class="mt-4 md:mt-6 text-gray-400 grid grid-cols-6">
@@ -61,7 +61,7 @@
 
                 <div class="grid grid-cols-12 md:grid-cols-12 mt-10">
                     <div class="col-span-1 px-2 py-4 md:p-4 border md:w-3/6">
-                        <a href="{{ route('categories.show', $Cate->slug) }}">
+                        <a href="{{ route('categories.show', $Category->slug) }}">
                             <svg width="20" height="11" viewBox="0 0 20 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 5.5189H19M5 9.71858L1 5.5189L5 9.71858ZM1 5.5189L5 1.31921L1 5.5189Z" stroke="#434343" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -111,10 +111,10 @@
         </div>
         <div class="col-span-4 md:col-span-1">
             <div class="hidden md:block">
-                <div class="font-bold text-gray-600 border-gray-300 text-center bg-gray-300 w-3/12 py-2">CATEGORY</div>
+                <div class="font-bold text-gray-600 border-gray-300 text-center bg-gray-300 w-1/2 py-3">CATEGORY</div>
                 <div class="border border-gray-300 mt-8 px-8 py-6 rounded-xl overflow-y-auto h-80">
                     @foreach($listCategory as $ls)
-                        @if($ls->slug != $Cate->slug)
+                        @if($ls->slug != $Category->slug)
                             <div class="border-b-2 border-dashed mb-4 pb-2 pt-4 text-xl">
                                 <a class="text-black cursor-pointer hover:text-blue-700" href="{{ route('categories.show', $ls->slug) }}">{{$ls->name}}</a>
                             </div>
@@ -129,16 +129,16 @@
             </div>
 
             <div class="md:mt-10">
-                <div class="font-bold text-gray-600 border-gray-300 text-center bg-gray-300 w-3/12 py-2 mb-6">NEWS</div>
+                <div class="font-bold text-gray-600 border-gray-300 text-center bg-gray-300 w-1/2 py-3 mb-6">NEWS</div>
                 @php
-                    $listArticle = $listArt->take(5)->filter(function ($value, $key) use ($article){
+                    $listArticles = $listArticle->take(5)->filter(function ($value, $key) use ($article){
                         return $value->slug != $article->slug;
                     });
                 @endphp
 
-                @foreach($listArticle as $item)
+                @foreach($listArticles as $item)
                     <div class="relative pb-4">
-                        <img src="{{ $item->image }}" class="w-full rounded-xl">
+                        <img src="{{ $item->image }}" class="w-[20rem] h-[12rem] rounded-xl">
                         <div
                             class="absolute -mt-32 text-white ml-2 md:w-5/6 md:ml-6">
                             <div class="">
@@ -154,7 +154,7 @@
                 @endforeach
             </div>
             <div class="mt-6">
-                <div CLASS="font-bold text-gray-600 border-gray-300 text-center bg-gray-300 w-4/12 py-2 text-lg md:text-lg">VIEW MORE</div>
+                <div CLASS="font-bold text-gray-600 border-gray-300 text-center bg-gray-300 w-1/2 py-3 text-lg md:text-lg">VIEW MORE</div>
                 <div class="font-bold md:pb-6 pt-2 text-xl md:text-2xl text-gray-700 font-['Merriweather']">
                     An Alarmed Base Prods Democrats Into an All-Out War
                 </div>
@@ -177,7 +177,7 @@
     </div>
 
     <div class="gap-4 pb-4 flex overflow-x-auto border-b-2 my-10">
-        @foreach($listArticle as $ls)
+        @foreach($listArticles as $ls)
             <div class=" flex-shrink-0 border border-gray-300 rounded-xl p-4 md:w-1/4 w-full">
                 <img src="{{ $ls->image }}" class="rounded-xl w-full h-56">
                 <div class="bg-white font-bold ml-6 text-gray-500 text-xl w-5/6 font-roboto mt-6 ">

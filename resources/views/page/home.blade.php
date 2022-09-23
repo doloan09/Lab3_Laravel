@@ -96,48 +96,14 @@
                 </div>
             </div>
             <div class="gap-4 pb-4 flex overflow-x-auto ">
-                <div class=" flex-shrink-0 relative">
-                    <img src="/img/img_2.png" alt="image">
-                    <p class="-mt-14 absolute bg-white font-bold ml-6 px-6 text-gray-500 text-xl w-5/6 font-['Merriweather']">
-                        Women Do Like to Compete
-                        Against Themselves
-                    </p>
-                </div>
-                <div class=" flex-shrink-0 relative">
-                    <img src="/img/img_3.png" alt="image">
-                    <p class="-mt-14 absolute bg-white font-bold ml-6 px-6 text-gray-500 text-xl w-5/6 font-['Merriweather']">
-                        Women Do Like to Compete
-                        Against Themselves
-                    </p>
-                </div>
-                <div class="flex-shrink-0 relative">
-                    <img src="/img/img_4.png" alt="image">
-                    <p class="-mt-14 absolute bg-white font-bold ml-6 px-6 text-gray-500 text-xl w-5/6 font-['Merriweather']">
-                        Women Do Like to Compete
-                        Against Themselves
-                    </p>
-                </div>
-                <div class="flex-shrink-0 relative">
-                    <img src="/img/img_2.png" alt="image">
-                    <p class="-mt-14 absolute bg-white font-bold ml-6 px-6 text-gray-500 text-xl w-5/6 font-['Merriweather']">
-                        Women Do Like to Compete
-                        Against Themselves
-                    </p>
-                </div>
-                <div class="flex-shrink-0 relative">
-                    <img src="/img/img_3.png" alt="image">
-                    <p class="-mt-14 absolute bg-white font-bold ml-6 px-6 text-gray-500 text-xl w-5/6 font-['Merriweather']">
-                        Women Do Like to Compete
-                        Against Themselves
-                    </p>
-                </div>
-                <div class="flex-shrink-0 relative">
-                    <img src="/img/img_4.png" alt="image">
-                    <p class="-mt-14 absolute bg-white font-bold ml-6 px-6 text-gray-500 text-xl w-5/6 font-['Merriweather']">
-                        Women Do Like to Compete
-                        Against Themselves
-                    </p>
-                </div>
+                @foreach($listArticle as $item)
+                    <div class=" flex-shrink-0 relative">
+                        <img src="{{ $item->image }}" alt="image" class="w-[28rem] h-[15rem]">
+                        <a href="{{ route('articles.show', $item->slug) }}" class="-mt-14 absolute bg-white font-bold ml-6 px-6 text-gray-500 text-xl w-5/6 font-['Merriweather']">
+                            {{ $item->tittle }}
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
         <div class="col-span-1 relative hidden md:block">
@@ -388,50 +354,18 @@
                         </div>
                     </div>
                     <div class="hidden md:block md:overflow-y-auto h-[40rem]">
-                        <div class="relative pt-6 pb-3">
-                            <img src="/img/img_9.png" alt="image">
-                            <div class="absolute -mt-40 text-white w-5/6 ml-4">
-                                <div class="border-2 border-solid rounded-full w-10 h-10 mb-2">
-                                    <img src="img/img_12.png" class="p-2" alt="image">
+                        @foreach($listArticle as $item)
+                            <div class="relative pt-6 pb-3">
+                                <img src="{{ $item->image }}" alt="image" class="w-[20rem] h-[11rem]">
+                                <div class="absolute -mt-40 text-white w-5/6 ml-4">
+                                    <div class="border-2 border-solid rounded-full w-10 h-10 mb-2">
+                                        <img src="img/img_12.png" class="p-2" alt="image">
+                                    </div>
+                                    <a class="font-bold text-lg" href="{{ route('articles.show', $item->slug) }}">{{ $item->tittle }}</a>
+                                    <p>2:30 | By Telegraph</p>
                                 </div>
-                                <p class="font-bold text-lg">Isro launches 104 satellites in a single mission to create
-                                    world record</p>
-                                <p>2:30 | By Telegraph</p>
                             </div>
-                        </div>
-                        <div class="relative py-3">
-                            <img src="/img/img_10.png" alt="image">
-                            <div class="absolute -mt-40 text-white w-5/6 ml-4">
-                                <div class="border-2 border-solid rounded-full w-10 h-10 mb-2">
-                                    <img src="img/img_12.png" class="p-2" alt="image">
-                                </div>
-                                <p class="font-bold text-lg">Isro launches 104 satellites in a single mission to create
-                                    world record</p>
-                                <p>2:30 | By Telegraph</p>
-                            </div>
-                        </div>
-                        <div class="relative py-3">
-                            <img src="/img/img_11.png" alt="image">
-                            <div class="absolute -mt-40 text-white w-5/6 ml-4">
-                                <div class="border-2 border-solid rounded-full w-10 h-10 mb-2">
-                                    <img src="img/img_12.png" class="p-2" alt="image">
-                                </div>
-                                <p class="font-bold text-lg">Isro launches 104 satellites in a single mission to create
-                                    world record</p>
-                                <p>2:30 | By Telegraph</p>
-                            </div>
-                        </div>
-                        <div class="relative py-3">
-                            <img src="/img/img_9.png" alt="image">
-                            <div class="absolute -mt-40 text-white w-5/6 ml-4">
-                                <div class="border-2 border-solid rounded-full w-10 h-10 mb-2">
-                                    <img src="img/img_12.png" class="p-2" alt="image">
-                                </div>
-                                <p class="font-bold text-lg">Isro launches 104 satellites in a single mission to create
-                                    world record</p>
-                                <p>2:30 | By Telegraph</p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -453,43 +387,13 @@
                 </div>
             </div>
             <div class="hidden md:block md:grid md:grid-cols-5 md:gap-6 mt-6 mb-4 md:mb-16">
-                <div class="border-dashed border-b-2 md:border-0">
-                    <img src="/img/img_13.png" alt="image">
-                    <p class="font-bold py-6 text-xl text-gray-700 font-['Merriweather']">The Intimate Lens of Ed van
-                        der Elsken</p>
-                    <p class=" text-gray-600 text-lg font-roboto">Two European museums are presenting retrospectives of
-                        a man many consider to be one of the best street photographers of the 20th century.</p>
-                </div>
-                <div class="mt-4 md:mt-0">
-                    <img src="/img/img_14.png" alt="image">
-                    <p class="font-bold py-6 text-xl text-gray-700 font-['Merriweather']">Gauging the Art Market’s
-                        Health</p>
-                    <p class=" text-gray-600 text-lg font-roboto">Auctions of Impressionist, modern and Surrealist art
-                        at Sotheby’s and Christie’s will be the first major test of buoyancy since the inauguration in
-                        the U.S.</p>
-                </div>
-                <div class="hidden md:block ">
-                    <img src="/img/img_15.png" alt="image">
-                    <p class="font-bold py-6 text-xl text-gray-700 font-['Merriweather']">What happen when you skip
-                        breakfast</p>
-                    <p class=" text-gray-600 text-lg font-roboto">The old saying, ‘Eat breakfast like a king, lunch like
-                        a prince and dinner like a pauper’ couldn’t ring truer. Beginning your day with a heavy
-                        breakfast.</p>
-                </div>
-                <div class="hidden md:block ">
-                    <img src="/img/img_16.png" alt="image">
-                    <p class="font-bold py-6 text-xl text-gray-700 font-['Merriweather']">In London, the Rise of
-                        Old-Fashioned </p>
-                    <p class=" text-gray-600 text-lg font-roboto">Two European museums are presenting retrospectives of
-                        a man many consider to be one of the best street photographers of the 20th century.</p>
-                </div>
-                <div class="hidden md:block ">
-                    <img src="/img/img_17.png" alt="image">
-                    <p class="font-bold py-6 text-xl text-gray-700 font-['Merriweather']">6 myths about keeping an
-                        aquarium</p>
-                    <p class=" text-gray-600 text-lg font-roboto">Keeping fish in aquariums is a hobby which is quite
-                        common. People are often very apprehensive about keeping fish and having an aquarium.</p>
-                </div>
+                @foreach($listArticle5 as $item)
+                    <div class="border-dashed border-b-2 md:border-0">
+                        <img src="{{ $item->image }}" alt="image" class="w-[18rem] h-[12rem]">
+                        <a href="{{ route('articles.show', $item->slug) }}" class="font-bold py-6 text-xl text-gray-700 font-['Merriweather']">{{ $item->tittle }}</a>
+                        <p class=" text-gray-600 text-lg font-roboto mt-4">{!! $item->description !!}</p>
+                    </div>
+                @endforeach
             </div>
 
             <div class="md:hidden mx-4">
