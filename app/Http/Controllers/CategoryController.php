@@ -51,13 +51,13 @@ class CategoryController extends Controller
         $user = Auth::user();
 
         $lstArticles = new Article();
-        $lstArticles = $lstArticles->showArticles($slug); // danh sach tat ca cac bai viet
+        $listArticles = $lstArticles->showArticles($slug); // danh sach tat ca cac bai viet
 
         $listCate = new Category();
         $listCategory = $listCate->showCategory(); /// danh sach tat ca category
-        $Cate = $listCate->showName($lstArticles[0]->id_category); // lay ra ten cua 1 category thong qua id bai viet
+        $Category = $listCate->showName($listArticles[0]->id_category); // lay ra ten cua 1 category thong qua id bai viet
 
-        return view('post.list_news', compact('listCategory', 'lstArticles','Cate', 'user', 'slug'));
+        return view('post.list_news', compact('listCategory', 'listArticles','Category', 'user', 'slug'));
     }
 
     /**

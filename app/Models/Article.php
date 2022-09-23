@@ -54,6 +54,11 @@ class Article extends Model
         return $list;
     }
 
+    public function randomListArticles($number){
+        $list = Article::query()->inRandomOrder()->paginate($number);
+        return $list;
+    }
+
 //    public function setImageAttribute($value)
 //    {
 //        $attribute_name = "image";

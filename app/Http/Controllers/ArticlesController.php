@@ -55,12 +55,12 @@ class ArticlesController extends Controller
 
         $listCate = new Category();
         $listCategory = $listCate->showCategory(); // danh sach category
-        $Cate = $listCate->showName($article->id_category); // ten category
+        $Category = $listCate->showName($article->id_category); // ten category
 
         $slug_category = $article->id_category;
-        $listArt = $lstArt->showListArticles($Cate->slug); // danh sach bai viet theo the loai
+        $listArticle = $lstArt->showListArticles($Category->slug); // danh sach bai viet theo the loai
 
-        return view('post.detail', compact('listCategory','slug', 'user', 'article', 'slug_category', 'Cate', 'listArt'));
+        return view('post.detail', compact('listCategory','slug', 'user', 'article', 'slug_category', 'Category', 'listArticle'));
     }
 
 

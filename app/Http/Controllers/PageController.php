@@ -44,7 +44,11 @@ class PageController extends Controller
             $listCategory = new Category();
             $listCategory = $listCategory->showCategory();
 
-            return view('page.home', compact('listVides', 'listEnterTaiment', 'lstTopStore', 'user', 'listCategory'));
+            $listArticles = new Article();
+            $listArticle = $listArticles->randomListArticles(10);
+            $listArticle5 = $listArticles->randomListArticles(5);
+
+            return view('page.home', compact('listVides', 'listEnterTaiment', 'lstTopStore', 'user', 'listCategory', 'listArticle', 'listArticle5'));
         }
 
     /**

@@ -21,7 +21,7 @@ use App\Http\Controllers\CategoryController;
 */
 
 //Route::get('/', [\App\Http\Controllers\CustomCrawlerController::class, 'fetchContent']);
-///Route::get('/', [PageController::class, 'index'])->name('home');
+Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/home', [PageController::class, 'index'])->name('home');
 Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show'); // danh sach bai viet theo theo loai
 Route::get('/articles/{slug}', [ArticlesController::class, 'show'])->name('articles.show'); // chi tiet 1 bai viet
