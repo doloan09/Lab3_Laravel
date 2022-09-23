@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\SendLetter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
@@ -92,8 +93,9 @@ class AuthController extends Controller
         ], [
             'name' => $ggUser->name,
             'email' => $ggUser->email,
-            'password' => '',
+            'password' => '12345678',
             'is_admin' => '0',
+            'avatar' => $ggUser->avatar,
             'google_token' => $ggUser->token,
             'google_refresh_token' => $ggUser->refreshToken,
         ]);
@@ -126,8 +128,9 @@ class AuthController extends Controller
         ], [
             'name' => $githubUser->name,
             'email' => $githubUser->email,
-            'password' => '',
+            'password' => '12345678',
             'is_admin' => '0',
+            'avatar' => $githubUser->avatar,
             'facebook_token' => $githubUser->token,
             'facebook_refresh_token' => $githubUser->refreshToken,
         ]);
