@@ -7,6 +7,7 @@ use App\Notifications\Greeting;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Auth\Events\Verified;
 
 class SendNotification implements ShouldQueue
 {
@@ -26,7 +27,7 @@ class SendNotification implements ShouldQueue
      * @param  \App\Events\SendLetter  $event
      * @return void
      */
-    public function handle(SendLetter $event)
+    public function handle(Verified $event)
     {
         if ($event->user instanceof MustVerifyEmail && $event->user->hasVerifiedEmail()) {
             $event->user->notify(new Greeting());

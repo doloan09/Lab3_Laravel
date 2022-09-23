@@ -41,6 +41,7 @@ class Greeting extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->subject('Thanks')
                     ->greeting("Xin chào " . $notifiable->name)
 //                    ->line('The introduction to the notification.')
 //                    ->action('Notification Action', url('/'))

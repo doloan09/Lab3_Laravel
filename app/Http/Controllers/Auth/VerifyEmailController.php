@@ -25,7 +25,7 @@ class VerifyEmailController extends Controller
         $request->fulfill();
 
 //        Auth::user()->notify(new Greeting());
-        event(new SendLetter(Auth::user()));
+//        event(new SendLetter(Auth::user()));
 
         return redirect('/home')->with('message', 'Bạn đã xác minh tài khoản thành công!');
     }
