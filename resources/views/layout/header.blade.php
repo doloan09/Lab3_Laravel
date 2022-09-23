@@ -42,7 +42,7 @@
                 <div id="dropdown-wrapper-category" class="hidden md:block inline-block text-sm md:text-lg mt-2">
                     <div class="relative">
                         <div onclick="toggle()" class="">
-                            <img src="/img/img_1.png" class="w-8 h-8 rounded-full">
+                            <img src="{{ $user->avatar ?? "/img/img_1.png" }}" class="w-8 h-8 rounded-full">
                         </div>
                     </div>
                     <div id="menu" class="hidden flex flex-col bg-white drop-shadow-md absolute -ml-20">
@@ -50,7 +50,7 @@
                             <div class="px-5 py-3 hover:bg-gray-300 border-b border-gray-200 hover:bg-white" href="">
                                 <div class="flex">
                                     <div>
-                                        <img src="/img/img_1.png" class="w-6 h-6 rounded-full">
+                                        <img src="{{ $user->avatar ?? "/img/img_1.png" }}" class="w-6 h-6 rounded-full">
                                     </div>
                                     <p class="ml-3 font-bold">{{ $user->name }}</p>
                                 </div>
